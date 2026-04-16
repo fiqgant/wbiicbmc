@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #__next {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+}
+
+@layer utilities {
+  /* Thin scrollbar for webkit browsers */
+  .scrollbar-thin::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 2px;
+  }
+  .scrollbar-thin::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+  }
+
+  /* Neobrutalism scrollbar */
+  .neo-scrollbar::-webkit-scrollbar {
+    width: 6px;
+  }
+  .neo-scrollbar::-webkit-scrollbar-track {
+    background: #fef08a;
+  }
+  .neo-scrollbar::-webkit-scrollbar-thumb {
+    background: #000;
+    border-radius: 0;
+  }
+}
+
+/* Smooth theme transition */
+* {
+  transition-property: background-color, border-color, color, box-shadow;
+  transition-duration: 200ms;
+  transition-timing-function: ease;
+}
+
+/* Override transition for canvas blocks (prevent flash) */
+[style*="gridColumn"] {
+  transition: outline 0.15s ease;
+}
