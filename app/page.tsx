@@ -1,92 +1,94 @@
-'use client';
+"use client";
 
-import { useState } from 'react';
-import { BookOpen } from 'lucide-react';
-import { BMCProvider, useBMC } from '@/context/BMCContext';
-import BMCForm from '@/components/BMCForm';
-import BMCCanvas from '@/components/BMCCanvas';
-import ThemeSwitcher from '@/components/ThemeSwitcher';
-import ExportButtons from '@/components/ExportButtons';
-import GuideModal from '@/components/GuideModal';
+import { useState } from "react";
+import { BookOpen } from "lucide-react";
+import { BMCProvider, useBMC } from "@/context/BMCContext";
+import BMCForm from "@/components/BMCForm";
+import BMCCanvas from "@/components/BMCCanvas";
+import ThemeSwitcher from "@/components/ThemeSwitcher";
+import ExportButtons from "@/components/ExportButtons";
+import GuideModal from "@/components/GuideModal";
 
 // ─── Inner app (needs context) ────────────────────────────────────────────────
 function AppInner() {
   const { theme } = useBMC();
   const [guideOpen, setGuideOpen] = useState(false);
 
-  const isHijau = theme.id === 'hijau';
-  const isNeo = theme.id === 'neobrutalism';
-  const isCorp = theme.id === 'corporate';
+  const isHijau = theme.id === "hijau";
+  const isNeo = theme.id === "neobrutalism";
+  const isCorp = theme.id === "corporate";
 
   const pandanBtnStyle: React.CSSProperties = isHijau
     ? {
-        background: '#AC7B2E',
-        color: '#fff',
-        border: 'none',
-        padding: '5px 14px',
-        fontSize: '12px',
+        background: "#AC7B2E",
+        color: "#fff",
+        border: "none",
+        padding: "5px 14px",
+        fontSize: "12px",
         fontWeight: 700,
         borderRadius: 4,
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
+        cursor: "pointer",
+        display: "flex",
+        alignItems: "center",
         gap: 6,
       }
     : isNeo
-    ? {
-        background: '#fde047',
-        color: '#000',
-        border: '2px solid #fde047',
-        padding: '5px 14px',
-        fontSize: '12px',
-        fontWeight: 900,
-        fontFamily: 'monospace',
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 6,
-      }
-    : isCorp
-    ? {
-        background: '#3b82f6',
-        color: '#fff',
-        border: 'none',
-        padding: '5px 14px',
-        fontSize: '12px',
-        fontWeight: 700,
-        borderRadius: 2,
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 6,
-      }
-    : {
-        background: '#3b82f6',
-        color: '#fff',
-        border: 'none',
-        padding: '5px 14px',
-        fontSize: '12px',
-        fontWeight: 600,
-        borderRadius: 6,
-        cursor: 'pointer',
-        display: 'flex',
-        alignItems: 'center',
-        gap: 6,
-      };
+      ? {
+          background: "#fde047",
+          color: "#000",
+          border: "2px solid #fde047",
+          padding: "5px 14px",
+          fontSize: "12px",
+          fontWeight: 900,
+          fontFamily: "monospace",
+          cursor: "pointer",
+          display: "flex",
+          alignItems: "center",
+          gap: 6,
+        }
+      : isCorp
+        ? {
+            background: "#3b82f6",
+            color: "#fff",
+            border: "none",
+            padding: "5px 14px",
+            fontSize: "12px",
+            fontWeight: 700,
+            borderRadius: 2,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+          }
+        : {
+            background: "#3b82f6",
+            color: "#fff",
+            border: "none",
+            padding: "5px 14px",
+            fontSize: "12px",
+            fontWeight: 600,
+            borderRadius: 6,
+            cursor: "pointer",
+            display: "flex",
+            alignItems: "center",
+            gap: 6,
+          };
 
   return (
-    <div className={`flex min-h-screen flex-col overflow-x-hidden lg:h-screen lg:overflow-hidden ${theme.pageBg} ${theme.fontClass}`}>
+    <div
+      className={`flex min-h-screen flex-col overflow-x-hidden lg:h-screen lg:overflow-hidden ${theme.pageBg} ${theme.fontClass}`}
+    >
       {/* ── Top header bar ── */}
       <header
         className={`z-10 flex flex-shrink-0 flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between ${theme.headerBg}`}
         style={{
           boxShadow: isHijau
-            ? '0 2px 8px rgba(19,54,34,0.4)'
+            ? "0 2px 8px rgba(19,54,34,0.4)"
             : isNeo
-            ? '0 4px 0 #000'
-            : isCorp
-            ? '0 1px 8px rgba(0,0,0,0.3)'
-            : '0 1px 4px rgba(0,0,0,0.06)',
+              ? "0 4px 0 #000"
+              : isCorp
+                ? "0 1px 8px rgba(0,0,0,0.3)"
+                : "0 1px 4px rgba(0,0,0,0.06)",
         }}
       >
         {/* Logo + title */}
@@ -94,17 +96,25 @@ function AppInner() {
           <div
             className="w-7 h-7 flex items-center justify-center text-sm font-black flex-shrink-0"
             style={{
-              background: isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#3b82f6' : '#3b82f6',
-              color: isHijau ? '#fff' : isNeo ? '#000' : '#fff',
+              background: isHijau
+                ? "#50918B"
+                : isNeo
+                  ? "#fde047"
+                  : isCorp
+                    ? "#3b82f6"
+                    : "#3b82f6",
+              color: isHijau ? "#fff" : isNeo ? "#000" : "#fff",
               borderRadius: isNeo ? 0 : 4,
-              border: isNeo ? '2px solid #fde047' : 'none',
+              border: isNeo ? "2px solid #fde047" : "none",
             }}
           >
             B
           </div>
           <div>
             <div className={theme.headerTitle}>BMC Generator</div>
-            <div className={theme.headerSubtitle}>Rancang · Visualisasi · Ekspor</div>
+            <div className={theme.headerSubtitle}>
+              Rancang · Visualisasi · Ekspor
+            </div>
           </div>
         </div>
 
@@ -153,13 +163,32 @@ function AppInner() {
       <footer
         className="border-t px-4 py-2 text-center text-[10px] leading-relaxed flex-shrink-0"
         style={{
-          background: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#0f172a' : '#fff',
-          color: isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#475569' : '#9ca3af',
-          borderColor: isHijau ? '#1a4a2e' : isNeo ? '#000' : isCorp ? '#1e293b' : '#f3f4f6',
-          fontFamily: isNeo ? 'monospace' : 'inherit',
+          background: isHijau
+            ? "#133622"
+            : isNeo
+              ? "#000"
+              : isCorp
+                ? "#0f172a"
+                : "#fff",
+          color: isHijau
+            ? "#50918B"
+            : isNeo
+              ? "#fde047"
+              : isCorp
+                ? "#475569"
+                : "#9ca3af",
+          borderColor: isHijau
+            ? "#1a4a2e"
+            : isNeo
+              ? "#000"
+              : isCorp
+                ? "#1e293b"
+                : "#f3f4f6",
+          fontFamily: isNeo ? "monospace" : "inherit",
         }}
       >
-        Business Model Canvas · Alexander Osterwalder &amp; Yves Pigneur · WBI Politeknik — WBIIC Business Initiative Center
+        Business Model Canvas · Alexander Osterwalder &amp; Yves Pigneur ·
+        Politeknik WBI — WBI Business Initiative Center
       </footer>
 
       {/* ── Panduan Modal ── */}
