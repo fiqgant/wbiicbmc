@@ -75,10 +75,10 @@ function AppInner() {
       };
 
   return (
-    <div className={`flex flex-col h-screen overflow-hidden ${theme.pageBg} ${theme.fontClass}`}>
+    <div className={`flex min-h-screen flex-col overflow-x-hidden lg:h-screen lg:overflow-hidden ${theme.pageBg} ${theme.fontClass}`}>
       {/* ── Top header bar ── */}
       <header
-        className={`flex items-center justify-between px-4 py-2.5 flex-shrink-0 z-10 ${theme.headerBg}`}
+        className={`z-10 flex flex-shrink-0 flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between ${theme.headerBg}`}
         style={{
           boxShadow: isHijau
             ? '0 2px 8px rgba(19,54,34,0.4)'
@@ -109,12 +109,13 @@ function AppInner() {
         </div>
 
         {/* Right controls */}
-        <div className="flex items-center gap-3">
+        <div className="flex w-full flex-col gap-2 sm:w-auto sm:flex-row sm:items-center sm:justify-end">
           {/* Panduan button */}
           <button
             onClick={() => setGuideOpen(true)}
             style={pandanBtnStyle}
             title="Buka panduan pengisian BMC"
+            className="w-full justify-center sm:w-auto"
           >
             <BookOpen size={13} strokeWidth={2} />
             Panduan
@@ -126,22 +127,22 @@ function AppInner() {
       </header>
 
       {/* ── Main split layout ── */}
-      <main className="flex flex-1 overflow-hidden min-h-0">
+      <main className="flex min-h-0 flex-1 flex-col overflow-visible lg:flex-row lg:overflow-hidden">
         {/* ── Left panel: Form ── */}
         <aside
-          className={`w-80 xl:w-96 flex-shrink-0 flex flex-col overflow-hidden ${theme.sidebarBg} ${theme.sidebarBorder}`}
+          className={`flex w-full flex-shrink-0 flex-col overflow-visible lg:w-80 lg:overflow-hidden xl:w-96 ${theme.sidebarBg} ${theme.sidebarBorder}`}
         >
           <BMCForm />
         </aside>
 
         {/* ── Right panel: Canvas preview + export ── */}
-        <section className="flex-1 flex flex-col overflow-hidden min-w-0">
+        <section className="flex min-w-0 flex-1 flex-col overflow-visible lg:overflow-hidden">
           {/* Export toolbar */}
           <ExportButtons />
 
           {/* Canvas preview (scrollable if needed) */}
-          <div className="flex-1 overflow-auto min-h-0">
-            <div className="min-w-[900px] h-full">
+          <div className="min-h-0 flex-1 overflow-x-auto overflow-y-visible lg:overflow-auto">
+            <div className="h-[560px] min-w-[820px] sm:h-[680px] sm:min-w-[900px] lg:h-full">
               <BMCCanvas />
             </div>
           </div>
@@ -150,7 +151,7 @@ function AppInner() {
 
       {/* ── Footer ── */}
       <footer
-        className="px-4 py-1.5 text-center text-[10px] flex-shrink-0 border-t"
+        className="border-t px-4 py-2 text-center text-[10px] leading-relaxed flex-shrink-0"
         style={{
           background: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#0f172a' : '#fff',
           color: isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#475569' : '#9ca3af',

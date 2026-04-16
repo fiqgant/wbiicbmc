@@ -103,7 +103,7 @@ export default function ExportButtons() {
   return (
     <div
       className={[
-        'flex items-center gap-2 px-3 py-2 border-b flex-wrap',
+        'flex flex-col gap-2 px-3 py-2 border-b sm:flex-row sm:flex-wrap sm:items-center',
         theme.id === 'hijau'
           ? 'border-[#50918B] bg-[#f0faf5]'
           : theme.id === 'neobrutalism'
@@ -113,66 +113,61 @@ export default function ExportButtons() {
           : 'border-gray-200 bg-white',
       ].join(' ')}
     >
-      <span
-        className={[
-          'text-xs font-semibold uppercase tracking-wider mr-1',
-          theme.id === 'hijau'
-            ? 'text-[#133622] font-bold'
-            : theme.id === 'neobrutalism'
-            ? 'text-black font-black font-mono'
-            : theme.id === 'corporate'
-            ? 'text-slate-600'
-            : 'text-gray-400',
-        ].join(' ')}
-      >
-        Ekspor:
-      </span>
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+        <span
+          className={[
+            'text-xs font-semibold uppercase tracking-wider mr-1',
+            theme.id === 'hijau'
+              ? 'text-[#133622] font-bold'
+              : theme.id === 'neobrutalism'
+              ? 'text-black font-black font-mono'
+              : theme.id === 'corporate'
+              ? 'text-slate-600'
+              : 'text-gray-400',
+          ].join(' ')}
+        >
+          Ekspor:
+        </span>
 
-      {/* PNG */}
-      <button onClick={exportPng} className={theme.btnPng} title="Ekspor sebagai gambar PNG resolusi tinggi">
-        <PngIcon />
-        Ekspor PNG
-      </button>
+        <div className="flex flex-wrap gap-2">
+          <button onClick={exportPng} className={theme.btnPng} title="Ekspor sebagai gambar PNG resolusi tinggi">
+            <PngIcon />
+            Ekspor PNG
+          </button>
 
-      {/* PDF */}
-      <button onClick={exportPdf} className={theme.btnPdf} title="Ekspor sebagai PDF A4 landscape">
-        <PdfIcon />
-        Ekspor PDF
-      </button>
+          <button onClick={exportPdf} className={theme.btnPdf} title="Ekspor sebagai PDF A4 landscape">
+            <PdfIcon />
+            Ekspor PDF
+          </button>
+        </div>
+      </div>
 
-      {/* Divider */}
-      <span
-        className={[
-          'text-xs font-semibold uppercase tracking-wider mx-1',
-          theme.id === 'hijau' ? 'text-[#50918B]' : theme.id === 'neobrutalism' ? 'text-black font-mono' : theme.id === 'corporate' ? 'text-slate-400' : 'text-gray-300',
-        ].join(' ')}
-      >
-        |
-      </span>
-      <span
-        className={[
-          'text-xs font-semibold uppercase tracking-wider mr-1',
-          theme.id === 'hijau' ? 'text-[#133622] font-bold' : theme.id === 'neobrutalism' ? 'text-black font-black font-mono' : theme.id === 'corporate' ? 'text-slate-600' : 'text-gray-400',
-        ].join(' ')}
-      >
-        Data JSON:
-      </span>
+      <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
+        <span
+          className={[
+            'text-xs font-semibold uppercase tracking-wider mr-1',
+            theme.id === 'hijau' ? 'text-[#133622] font-bold' : theme.id === 'neobrutalism' ? 'text-black font-black font-mono' : theme.id === 'corporate' ? 'text-slate-600' : 'text-gray-400',
+          ].join(' ')}
+        >
+          Data JSON:
+        </span>
 
-      {/* Save JSON */}
-      <button onClick={handleSaveJSON} className={theme.btnSave} title="Save canvas as JSON">
-        <SaveIcon />
-        Simpan JSON
-      </button>
+        <div className="flex flex-wrap gap-2">
+          <button onClick={handleSaveJSON} className={theme.btnSave} title="Save canvas as JSON">
+            <SaveIcon />
+            Simpan JSON
+          </button>
 
-      {/* Load JSON */}
-      <button
-        onClick={() => fileInputRef.current?.click()}
-        className={theme.btnLoad}
-        title="Muat canvas dari file JSON"
-      >
-        <LoadIcon />
-        Muat JSON
-      </button>
+          <button
+            onClick={() => fileInputRef.current?.click()}
+            className={theme.btnLoad}
+            title="Muat canvas dari file JSON"
+          >
+            <LoadIcon />
+            Muat JSON
+          </button>
+        </div>
+      </div>
       <input
         ref={fileInputRef}
         type="file"

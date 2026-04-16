@@ -215,8 +215,8 @@ export default function BMCCanvas() {
 
   return (
     <div
-      className={`flex flex-col h-full w-full ${theme.canvasOuterBg} ${theme.fontClass}`}
-      style={{ padding: theme.id === 'neobrutalism' ? '16px' : '12px' }}
+      className={`flex h-full w-full min-h-0 flex-col ${theme.canvasOuterBg} ${theme.fontClass}`}
+      style={{ padding: theme.id === 'neobrutalism' ? '14px' : '10px' }}
     >
       {/* Wrapper card */}
       <div
@@ -235,8 +235,10 @@ export default function BMCCanvas() {
         <div
           style={{
             display: 'flex',
-            alignItems: 'center',
+            alignItems: 'flex-start',
             justifyContent: 'space-between',
+            gap: '12px',
+            flexWrap: 'wrap',
             padding: '8px 14px',
             background:
               theme.id === 'hijau'
@@ -305,6 +307,7 @@ export default function BMCCanvas() {
               display: 'flex',
               flexDirection: 'row',
               alignItems: 'center',
+              flexWrap: 'wrap',
               gap: 10,
               background: '#ffffff',
               borderRadius: 4,

@@ -39,16 +39,16 @@ export default function ThemeSwitcher() {
   };
 
   return (
-    <div className="flex items-center gap-1.5">
+    <div className="flex flex-wrap items-center gap-1.5">
       <span
         className="text-xs mr-0.5"
         style={{
           color: isHijau ? '#7fba9a' : isNeo ? '#a3a3a3' : isCorp ? '#64748b' : '#9ca3af',
         }}
-      >
-        Tema:
-      </span>
-      <div className="flex gap-1">
+        >
+          Tema:
+        </span>
+      <div className="flex flex-wrap gap-1">
         {themeOrder.map((id) => (
           <button
             key={id}

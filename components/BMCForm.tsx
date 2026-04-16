@@ -104,7 +104,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
           )}
 
           {/* Input row */}
-          <div className="flex gap-1.5">
+          <div className="flex flex-col gap-1.5 sm:flex-row">
             <input
               ref={inputRef}
               type="text"
@@ -114,7 +114,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
               placeholder={meta.placeholders[items.length % meta.placeholders.length]}
               className={theme.formInput}
             />
-            <button onClick={handleAdd} className={theme.formAddBtn} aria-label="Tambah item">
+            <button onClick={handleAdd} className={`${theme.formAddBtn} justify-center`} aria-label="Tambah item">
               <Plus size={13} strokeWidth={2.5} />
               Tambah
             </button>
@@ -226,7 +226,7 @@ export default function BMCForm() {
   ].join(' ');
 
   return (
-    <div className={`flex flex-col h-full ${theme.fontClass}`}>
+    <div className={`flex h-full min-h-0 flex-col ${theme.fontClass}`}>
       {/* ── Nama Usaha ── */}
       <div
         className="px-4 py-3 border-b flex-shrink-0"
@@ -259,7 +259,7 @@ export default function BMCForm() {
 
       {/* ── Toolbar ── */}
       <div
-        className="flex items-center justify-between px-4 py-2 border-b flex-shrink-0"
+        className="flex flex-col gap-2 px-4 py-2 border-b flex-shrink-0 sm:flex-row sm:items-center sm:justify-between"
         style={{
           background: isHijau ? '#f0faf5' : isNeo ? '#fffde7' : isCorp ? '#f8fafc' : '#f9fafb',
           borderColor: isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#e2e8f0' : '#f0f0f0',
@@ -271,7 +271,7 @@ export default function BMCForm() {
         >
           Isi Canvas Kamu
         </span>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={() => loadData(sampleBMCData)}
             className="text-xs px-2 py-1 transition-colors"
@@ -304,7 +304,7 @@ export default function BMCForm() {
       </div>
 
       {/* ── Scrollable form area ── */}
-      <div className={`flex-1 overflow-y-auto px-3 py-3 ${theme.sidebarBg}`} style={{ scrollbarWidth: 'thin' }}>
+      <div className={`flex-1 overflow-visible px-3 py-3 lg:overflow-y-auto ${theme.sidebarBg}`} style={{ scrollbarWidth: 'thin' }}>
 
         <div className={sectionLabelClass}>Infrastruktur</div>
         <BlockInput blockKey="keyPartnerships" />
