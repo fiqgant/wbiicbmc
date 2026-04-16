@@ -10,6 +10,8 @@ import { blockMeta } from '@/lib/defaultData';
 import BlockIcon from '@/components/icons/BlockIcon';
 import {
   blockGuides,
+  fillOrderSummary,
+  fillOrderSteps,
   generalPrinciples,
   strategies,
   commonMistakes,
@@ -28,7 +30,7 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
   const { theme } = useBMC();
   const [tab, setTab] = useState<Tab>(initialBlock ? 'blok' : 'prinsip');
   const [selectedBlock, setSelectedBlock] = useState<BMCBlockKey>(
-    initialBlock ?? 'keyPartnerships'
+    initialBlock ?? 'customerSegments'
   );
 
   // Sync when opened with a specific block
@@ -59,16 +61,6 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
 
   const accentColor = isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#1d4ed8' : '#3b82f6';
   const headerBg = isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#1e3a5f' : '#1e293b';
-  const highlightBg = isHijau ? '#AC7B2E' : isNeo ? '#fde047' : isCorp ? '#1d4ed8' : '#3b82f6';
-  const highlightText = isHijau ? '#fff' : isNeo ? '#000' : '#fff';
-
-  const tabClass = (t: Tab) =>
-    [
-      'px-4 py-2 text-xs font-bold uppercase tracking-wide transition-colors border-b-2 cursor-pointer',
-      tab === t
-        ? `border-[${accentColor}] text-[${accentColor}]`
-        : 'border-transparent text-gray-400 hover:text-gray-600',
-    ].join(' ');
 
   return (
     <div
@@ -164,8 +156,75 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
           {/* Tab A: Prinsip Umum */}
           {tab === 'prinsip' && (
             <div style={{ padding: '20px 24px' }}>
+              <div
+                style={{
+                  marginBottom: 16,
+                  padding: '16px',
+                  borderRadius: isNeo ? 0 : 8,
+                  border: isNeo ? '2px solid #000' : `1px solid ${isHijau ? '#c5ddd9' : '#bfdbfe'}`,
+                  background: isHijau ? '#f0faf5' : '#eff6ff',
+                }}
+              >
+                <div
+                  style={{
+                    fontSize: '11px',
+                    fontWeight: 800,
+                    color: accentColor,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.08em',
+                    marginBottom: 8,
+                  }}
+                >
+                  Urutan pengisian yang disarankan
+                </div>
+                <p style={{ fontSize: '12px', color: '#334155', marginBottom: 12, lineHeight: 1.6 }}>
+                  {fillOrderSummary}
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {fillOrderSteps.map((step, i) => (
+                    <div
+                      key={step.title}
+                      style={{
+                        display: 'flex',
+                        gap: 10,
+                        alignItems: 'flex-start',
+                        padding: '10px 12px',
+                        borderRadius: isNeo ? 0 : 6,
+                        background: '#fff',
+                        border: isNeo ? '2px solid #000' : '1px solid #dbeafe',
+                      }}
+                    >
+                      <div
+                        style={{
+                          width: 22,
+                          height: 22,
+                          borderRadius: isNeo ? 0 : '50%',
+                          background: accentColor,
+                          color: '#fff',
+                          display: 'flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          fontSize: '10px',
+                          fontWeight: 800,
+                          flexShrink: 0,
+                        }}
+                      >
+                        {i + 1}
+                      </div>
+                      <div>
+                        <div style={{ fontSize: '12px', fontWeight: 700, color: '#1e293b', marginBottom: 3 }}>
+                          {step.title}
+                        </div>
+                        <div style={{ fontSize: '11px', color: '#64748b', lineHeight: 1.5 }}>
+                          {step.desc}
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
               <p style={{ fontSize: '13px', color: '#475569', marginBottom: 16, lineHeight: 1.6 }}>
-                Sebelum mengisi BMC, pastikan kamu memahami 4 prinsip utama berikut ini agar hasil canvas-mu
+                Setelah mengikuti urutan di atas, pastikan kamu memahami prinsip-prinsip berikut ini agar hasil canvas-mu
                 berkualitas dan dapat dipertanggungjawabkan.
               </p>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>

@@ -5,7 +5,7 @@ import { X, Plus, ChevronDown, ChevronUp, ClipboardList, FolderOpen, CheckSquare
 import { useBMC } from '@/context/BMCContext';
 import { blockMeta, sampleBMCData } from '@/lib/defaultData';
 import { BMCBlockKey } from '@/lib/types';
-import { blockGuides } from '@/lib/guide';
+import { blockGuides, fillOrderSteps, fillOrderSummary } from '@/lib/guide';
 import BlockIcon from '@/components/icons/BlockIcon';
 
 function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
@@ -303,25 +303,74 @@ export default function BMCForm() {
         </div>
       </div>
 
+      <div
+        className="px-4 py-3 border-b flex-shrink-0"
+        style={{
+          background: isHijau ? '#f7fbf9' : isNeo ? '#fffde7' : isCorp ? '#f8fafc' : '#f8fbff',
+          borderColor: isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#dbe4f0' : '#dbeafe',
+        }}
+      >
+        <div
+          className="text-[10px] font-bold uppercase tracking-widest mb-1.5"
+          style={{
+            color: isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#475569' : '#1d4ed8',
+            fontFamily: isNeo ? 'monospace' : 'inherit',
+          }}
+        >
+          Urutan isi yang disarankan
+        </div>
+        <p
+          className="text-xs leading-5"
+          style={{
+            color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#334155' : '#1e3a5f',
+            fontFamily: isNeo ? 'monospace' : 'inherit',
+          }}
+        >
+          {fillOrderSummary}
+        </p>
+        <div className="mt-2 flex flex-wrap gap-1.5">
+          {fillOrderSteps.map((step, index) => (
+            <span
+              key={step.title}
+              className="text-[10px] font-semibold px-2 py-1"
+              style={{
+                border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : '#93c5fd'}`,
+                background: '#fff',
+                color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#334155' : '#1e3a5f',
+                borderRadius: isNeo ? 0 : 999,
+                fontFamily: isNeo ? 'monospace' : 'inherit',
+              }}
+              title={step.desc}
+            >
+              {index + 1}. {step.title}
+            </span>
+          ))}
+        </div>
+      </div>
+
       {/* ── Scrollable form area ── */}
       <div className={`flex-1 overflow-visible px-3 py-3 lg:overflow-y-auto ${theme.sidebarBg}`} style={{ scrollbarWidth: 'thin' }}>
 
-        <div className={sectionLabelClass}>Infrastruktur</div>
-        <BlockInput blockKey="keyPartnerships" />
-        <BlockInput blockKey="keyActivities" />
-        <BlockInput blockKey="keyResources" />
+        <div className={sectionLabelClass}>Mulai dari Kanan</div>
+        <BlockInput blockKey="customerSegments" />
 
         <div className={`${sectionLabelClass} mt-4`}>Proposisi Nilai</div>
         <BlockInput blockKey="valuePropositions" />
 
-        <div className={`${sectionLabelClass} mt-4`}>Pelanggan</div>
-        <BlockInput blockKey="customerRelationships" />
+        <div className={`${sectionLabelClass} mt-4`}>Interaksi Pelanggan</div>
         <BlockInput blockKey="channels" />
-        <BlockInput blockKey="customerSegments" />
+        <BlockInput blockKey="customerRelationships" />
+
+        <div className={`${sectionLabelClass} mt-4`}>Monetisasi</div>
+        <BlockInput blockKey="revenueStreams" />
+
+        <div className={`${sectionLabelClass} mt-4`}>Infrastruktur</div>
+        <BlockInput blockKey="keyResources" />
+        <BlockInput blockKey="keyActivities" />
+        <BlockInput blockKey="keyPartnerships" />
 
         <div className={`${sectionLabelClass} mt-4`}>Keuangan</div>
         <BlockInput blockKey="costStructure" />
-        <BlockInput blockKey="revenueStreams" />
 
         <div className="h-6" />
       </div>

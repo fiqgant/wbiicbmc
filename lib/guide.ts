@@ -15,12 +15,51 @@ export interface Strategy {
   desc: string;
 }
 
+export interface FillOrderStep {
+  title: string;
+  desc: string;
+}
+
 export interface CommonMistake {
   point: string;
 }
 
+export const fillOrderSummary =
+  'Mengikuti saran Alexander Osterwalder, isi BMC sebaiknya dimulai dari sisi kanan agar kamu lebih jelas menentukan siapa pelanggan, nilai yang ditawarkan, dan alasan mereka mau membayar sebelum melengkapi sisi kiri canvas.';
+
+export const fillOrderSteps: FillOrderStep[] = [
+  {
+    title: 'Customer Segments',
+    desc: 'Mulai dari segmen pelanggan inti, jobs-to-be-done, pain, dan gain mereka.',
+  },
+  {
+    title: 'Value Propositions',
+    desc: 'Rumuskan nilai yang benar-benar menjawab kebutuhan segmen tadi.',
+  },
+  {
+    title: 'Channels & Customer Relationships',
+    desc: 'Tentukan cara menjangkau pelanggan dan bagaimana menjaga hubungan dengan mereka.',
+  },
+  {
+    title: 'Revenue Streams',
+    desc: 'Validasi untuk nilai apa pelanggan bersedia membayar dan bagaimana uang masuk.',
+  },
+  {
+    title: 'Sisi Kiri Canvas',
+    desc: 'Baru lengkapi Key Resources, Key Activities, dan Key Partnerships untuk mendukung nilai tadi.',
+  },
+  {
+    title: 'Cost Structure',
+    desc: 'Tutup dengan biaya agar model bisnisnya tetap realistis secara finansial.',
+  },
+];
+
 // ─── Prinsip Umum (Bagian A) ─────────────────────────────────────────────────
 export const generalPrinciples: GeneralPrinciple[] = [
+  {
+    title: 'Mulai dari Sisi Kanan Canvas',
+    desc: 'Ikuti urutan Alexander Osterwalder: mulai dari Customer Segments, lanjut ke Value Propositions, lalu hubungan/channel pelanggan sebelum mengisi sisi kiri BMC.',
+  },
   {
     title: 'Gunakan Bahasa yang Jelas dan Ringkas',
     desc: 'Tulis setiap blok dengan kalimat sederhana (1–3 kalimat utama) yang langsung menjawab inti pertanyaan.',
