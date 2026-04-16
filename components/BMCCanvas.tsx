@@ -35,6 +35,22 @@ function CanvasBlock({
   const pos = BLOCK_GRID[blockKey];
   const isVP = blockKey === 'valuePropositions';
   const isBottom = blockKey === 'costStructure' || blockKey === 'revenueStreams';
+  const watermarkColor =
+    theme.id === 'hijau'
+      ? '#50918B'
+      : theme.id === 'neobrutalism'
+      ? '#000000'
+      : theme.id === 'corporate'
+      ? '#1d4ed8'
+      : '#64748b';
+  const watermarkOpacity = isHighlighted
+    ? theme.id === 'neobrutalism'
+      ? 0.14
+      : 0.18
+    : theme.id === 'neobrutalism'
+    ? 0.08
+    : 0.1;
+  const watermarkSize = isBottom ? 40 : isVP ? 72 : 56;
 
   const borderStyle =
     theme.id === 'neobrutalism'
@@ -94,6 +110,7 @@ function CanvasBlock({
           padding: '8px 10px',
           overflowY: 'auto',
           background: theme.blockBg[blockKey],
+          position: 'relative',
           display: 'flex',
           flexDirection: isBottom ? 'row' : 'column',
           flexWrap: isBottom ? 'wrap' : 'nowrap',
@@ -101,9 +118,25 @@ function CanvasBlock({
           alignContent: 'flex-start',
         }}
       >
+        <div
+          aria-hidden="true"
+          style={{
+            position: 'absolute',
+            right: isBottom ? '10px' : '8px',
+            bottom: isBottom ? '6px' : '8px',
+            opacity: watermarkOpacity,
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        >
+          <BlockIcon blockKey={blockKey} size={watermarkSize} color={watermarkColor} strokeWidth={1.4} />
+        </div>
+
         {items.length === 0 ? (
           <span
             style={{
+              position: 'relative',
+              zIndex: 1,
               fontSize: '10px',
               color: theme.id === 'neobrutalism' ? '#555' : '#9ca3af',
               fontStyle: theme.id === 'neobrutalism' ? 'normal' : 'italic',
@@ -117,6 +150,8 @@ function CanvasBlock({
             <div
               key={idx}
               style={{
+                position: 'relative',
+                zIndex: 1,
                 display: 'flex',
                 alignItems: 'flex-start',
                 gap: '5px',
