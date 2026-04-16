@@ -5,7 +5,7 @@ import { X, Plus, ChevronDown, ChevronUp, ClipboardList, FolderOpen, CheckSquare
 import { useBMC } from '@/context/BMCContext';
 import { blockMeta, getRandomSampleBMCWorkspace, sampleBMCWorkspaces } from '@/lib/defaultData';
 import { BMCBlockKey } from '@/lib/types';
-import { blockGuides, fillOrderSteps, fillOrderSummary } from '@/lib/guide';
+import { blockGuides } from '@/lib/guide';
 import BlockIcon from '@/components/icons/BlockIcon';
 
 function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
@@ -346,51 +346,6 @@ export default function BMCForm() {
             ? `Contoh terakhir: ${sampleBMCWorkspaces.find((sample) => sample.id === lastLoadedSampleId)?.label} — ${sampleBMCWorkspaces.find((sample) => sample.id === lastLoadedSampleId)?.summary}`
             : `Tersedia ${sampleBMCWorkspaces.length} studi kasus detail. Klik "Muat Contoh Acak" untuk langsung mengisi canvas dengan salah satu contoh.`}
         </p>
-      </div>
-
-      <div
-        className="px-4 py-3 border-b flex-shrink-0"
-        style={{
-          background: isHijau ? '#f7fbf9' : isNeo ? '#fffde7' : isCorp ? '#f8fafc' : '#f8fbff',
-          borderColor: isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#dbe4f0' : '#dbeafe',
-        }}
-      >
-        <div
-          className="text-[10px] font-bold uppercase tracking-widest mb-1.5"
-          style={{
-            color: isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#475569' : '#1d4ed8',
-            fontFamily: isNeo ? 'monospace' : 'inherit',
-          }}
-        >
-          Urutan isi yang disarankan
-        </div>
-        <p
-          className="text-xs leading-5"
-          style={{
-            color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#334155' : '#1e3a5f',
-            fontFamily: isNeo ? 'monospace' : 'inherit',
-          }}
-        >
-          {fillOrderSummary}
-        </p>
-        <div className="mt-2 flex flex-wrap gap-1.5">
-          {fillOrderSteps.map((step, index) => (
-            <span
-              key={step.title}
-              className="text-[10px] font-semibold px-2 py-1"
-              style={{
-                border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : '#93c5fd'}`,
-                background: '#fff',
-                color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#334155' : '#1e3a5f',
-                borderRadius: isNeo ? 0 : 999,
-                fontFamily: isNeo ? 'monospace' : 'inherit',
-              }}
-              title={step.desc}
-            >
-              {index + 1}. {step.title}
-            </span>
-          ))}
-        </div>
       </div>
 
       {/* ── Scrollable form area ── */}
