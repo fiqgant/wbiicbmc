@@ -3,7 +3,7 @@
 import { useState, KeyboardEvent, useRef } from 'react';
 import { X, Plus, ChevronDown, ChevronUp, ClipboardList, FolderOpen, CheckSquare } from 'lucide-react';
 import { useBMC } from '@/context/BMCContext';
-import { blockMeta, sampleBMCWorkspaces } from '@/lib/defaultData';
+import { blockMeta, getRandomSampleBMCWorkspace, sampleBMCWorkspaces } from '@/lib/defaultData';
 import { BMCBlockKey } from '@/lib/types';
 import { blockGuides, fillOrderSteps, fillOrderSummary } from '@/lib/guide';
 import BlockIcon from '@/components/icons/BlockIcon';
@@ -215,7 +215,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
 
 export default function BMCForm() {
   const { theme, loadWorkspace, resetData, companyName, setCompanyName, teamName, setTeamName } = useBMC();
-  const [selectedSampleId, setSelectedSampleId] = useState(sampleBMCWorkspaces[0]?.id ?? '');
+  const [lastLoadedSampleId, setLastLoadedSampleId] = useState<string | null>(null);
 
   const isHijau = theme.id === 'hijau';
   const isNeo   = theme.id === 'neobrutalism';
@@ -293,30 +293,11 @@ export default function BMCForm() {
           Isi Canvas Kamu
         </span>
         <div className="flex flex-wrap gap-2 sm:items-center">
-          <select
-            value={selectedSampleId}
-            onChange={(e) => setSelectedSampleId(e.target.value)}
-            className="text-xs px-2 py-1"
-            style={{
-              border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : '#e5e7eb'}`,
-              color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#475569' : '#6b7280',
-              background: '#fff',
-              borderRadius: isNeo ? 0 : 4,
-              fontFamily: isNeo ? 'monospace' : 'inherit',
-              fontWeight: isNeo ? 900 : 500,
-            }}
-            aria-label="Pilih contoh studi kasus"
-          >
-            {sampleBMCWorkspaces.map((sample) => (
-              <option key={sample.id} value={sample.id}>
-                {sample.label}
-              </option>
-            ))}
-          </select>
           <button
             onClick={() => {
-              const selectedSample = sampleBMCWorkspaces.find((sample) => sample.id === selectedSampleId);
-              if (selectedSample) loadWorkspace(selectedSample);
+              const randomSample = getRandomSampleBMCWorkspace(lastLoadedSampleId);
+              loadWorkspace(randomSample);
+              setLastLoadedSampleId(randomSample.id);
             }}
             className="text-xs px-2 py-1 transition-colors"
             style={{
@@ -328,7 +309,7 @@ export default function BMCForm() {
               fontWeight: isNeo ? 900 : 500,
             }}
           >
-            Muat Contoh
+            Muat Contoh Acak
           </button>
           <button
             onClick={resetData}
@@ -361,7 +342,9 @@ export default function BMCForm() {
             fontFamily: isNeo ? 'monospace' : 'inherit',
           }}
         >
-          {sampleBMCWorkspaces.find((sample) => sample.id === selectedSampleId)?.summary}
+          {lastLoadedSampleId
+            ? `Contoh terakhir: ${sampleBMCWorkspaces.find((sample) => sample.id === lastLoadedSampleId)?.label} — ${sampleBMCWorkspaces.find((sample) => sample.id === lastLoadedSampleId)?.summary}`
+            : `Tersedia ${sampleBMCWorkspaces.length} studi kasus detail. Klik "Muat Contoh Acak" untuk langsung mengisi canvas dengan salah satu contoh.`}
         </p>
       </div>
 
