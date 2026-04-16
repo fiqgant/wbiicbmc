@@ -3,9 +3,10 @@
 import { useRef } from 'react';
 import { useBMC } from '@/context/BMCContext';
 import { exportAsJSON, parseJSONFile } from '@/lib/storage';
+import { BMCData } from '@/lib/types';
 
 export default function ExportButtons() {
-  const { theme, canvasRef, data, loadData } = useBMC();
+  const { theme, canvasRef, data, companyName, teamName, loadWorkspace } = useBMC();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const exportPng = async () => {
@@ -45,6 +46,10 @@ export default function ExportButtons() {
     try {
       const { toPng } = await import('html-to-image');
       const { jsPDF } = await import('jspdf');
+      const [wbiLogo, wbiicLogo] = await Promise.all([
+        imageUrlToDataUrl('/wbi.png'),
+        imageUrlToDataUrl('/wbiic.png'),
+      ]);
 
       const dataUrl = await toPng(node, {
         pixelRatio: 2,
@@ -58,8 +63,13 @@ export default function ExportButtons() {
       const pageW = pdf.internal.pageSize.getWidth();
       const pageH = pdf.internal.pageSize.getHeight();
       const margin = 10;
+      const accentColor =
+        theme.id === 'hijau' ? '#50918B' : theme.id === 'neobrutalism' ? '#000000' : theme.id === 'corporate' ? '#1d4ed8' : '#3b82f6';
+      const headerH = 26;
+      const summaryH = 24;
+      const contentTop = margin + headerH + summaryH + 6;
       const imgW = pageW - margin * 2;
-      const imgH = pageH - margin * 2;
+      const imgH = pageH - contentTop - margin;
 
       // Get the canvas element dimensions to preserve aspect ratio
       const canvasW = node.offsetWidth;
@@ -74,7 +84,39 @@ export default function ExportButtons() {
       }
 
       const offsetX = margin + (imgW - finalW) / 2;
-      const offsetY = margin + (imgH - finalH) / 2;
+      const offsetY = contentTop + (imgH - finalH) / 2;
+
+      pdf.setFillColor(accentColor);
+      pdf.rect(margin, margin, pageW - margin * 2, 2.5, 'F');
+
+      if (wbiLogo) pdf.addImage(wbiLogo, 'PNG', margin, margin + 5, 18, 18);
+      if (wbiicLogo) pdf.addImage(wbiicLogo, 'PNG', margin + 21, margin + 6, 22, 14);
+
+      pdf.setTextColor('#111827');
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(18);
+      pdf.text('Business Model Canvas', margin + 48, margin + 12);
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9.5);
+      pdf.setTextColor('#475569');
+      pdf.text(`Nama Usaha: ${companyName || '-'}`, margin + 48, margin + 18);
+      pdf.text(`Nama Tim: ${teamName || '-'}`, margin + 48, margin + 23);
+      pdf.text(`Tanggal: ${formatExportDate(new Date())}`, pageW - margin, margin + 18, { align: 'right' });
+
+      pdf.setDrawColor('#dbe4f0');
+      pdf.setFillColor('#f8fafc');
+      pdf.roundedRect(margin, margin + headerH, pageW - margin * 2, summaryH, 2, 2, 'FD');
+      pdf.setFont('helvetica', 'bold');
+      pdf.setFontSize(10);
+      pdf.setTextColor(accentColor);
+      pdf.text('Ringkasan Usaha', margin + 4, margin + headerH + 6);
+
+      pdf.setFont('helvetica', 'normal');
+      pdf.setFontSize(9.5);
+      pdf.setTextColor('#334155');
+      const summaryLines = pdf.splitTextToSize(buildBusinessSummary(data, companyName), pageW - margin * 2 - 8);
+      pdf.text(summaryLines, margin + 4, margin + headerH + 12);
 
       pdf.addImage(dataUrl, 'PNG', offsetX, offsetY, finalW, finalH);
       pdf.save('business-model-canvas.pdf');
@@ -85,14 +127,14 @@ export default function ExportButtons() {
   };
 
   const handleSaveJSON = () => {
-    exportAsJSON(data);
+    exportAsJSON({ data, companyName, teamName });
   };
 
   const handleLoadJSON = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
     parseJSONFile(file)
-      .then((parsed) => loadData(parsed))
+      .then((parsed) => loadWorkspace(parsed))
       .catch(() => alert('Failed to load file. Make sure it is a valid BMC JSON file.'))
       .finally(() => {
         // Reset file input so same file can be re-loaded
@@ -177,6 +219,41 @@ export default function ExportButtons() {
       />
     </div>
   );
+}
+
+function buildBusinessSummary(data: BMCData, companyName: string): string {
+  const subject = companyName || 'Usaha ini';
+  const segment = data.customerSegments[0] ?? 'segmen pelanggan yang sudah ditentukan';
+  const proposition = data.valuePropositions[0] ?? 'nilai utama yang ditawarkan';
+  const channel = data.channels[0] ?? 'kanal utama yang dipilih';
+  const revenue = data.revenueStreams[0] ?? 'sumber pendapatan utama';
+
+  return `${subject} melayani ${segment}. Nilai utama yang ditawarkan adalah ${proposition}. Pelanggan dijangkau melalui ${channel}. Pendapatan utama berasal dari ${revenue}.`;
+}
+
+function formatExportDate(date: Date): string {
+  return new Intl.DateTimeFormat('id-ID', {
+    day: '2-digit',
+    month: 'long',
+    year: 'numeric',
+  }).format(date);
+}
+
+async function imageUrlToDataUrl(url: string): Promise<string | null> {
+  try {
+    const response = await fetch(url);
+    if (!response.ok) return null;
+    const blob = await response.blob();
+
+    return await new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(typeof reader.result === 'string' ? reader.result : null);
+      reader.onerror = () => reject(new Error(`Failed to convert ${url} to data URL`));
+      reader.readAsDataURL(blob);
+    });
+  } catch {
+    return null;
+  }
 }
 
 function PngIcon() {

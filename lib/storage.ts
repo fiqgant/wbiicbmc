@@ -1,9 +1,10 @@
-import { BMCData } from './types';
+import { BMCData, BMCWorkspace } from './types';
 import { defaultBMCData } from './defaultData';
 
 const STORAGE_KEY = 'bmc_data_v1';
 const THEME_KEY = 'bmc_theme_v1';
 const COMPANY_KEY = 'bmc_company_v1';
+const TEAM_KEY = 'bmc_team_v1';
 
 export function loadFromStorage(): BMCData {
   try {
@@ -57,8 +58,24 @@ export function saveCompanyNameToStorage(name: string): void {
   }
 }
 
-export function exportAsJSON(data: BMCData, filename = 'bmc-canvas.json'): void {
-  const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+export function loadTeamNameFromStorage(): string {
+  try {
+    return localStorage.getItem(TEAM_KEY) ?? '';
+  } catch {
+    return '';
+  }
+}
+
+export function saveTeamNameToStorage(name: string): void {
+  try {
+    localStorage.setItem(TEAM_KEY, name);
+  } catch {
+    // Ignore
+  }
+}
+
+export function exportAsJSON(workspace: BMCWorkspace, filename = 'bmc-canvas.json'): void {
+  const blob = new Blob([JSON.stringify(workspace, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -67,13 +84,30 @@ export function exportAsJSON(data: BMCData, filename = 'bmc-canvas.json'): void 
   URL.revokeObjectURL(url);
 }
 
-export function parseJSONFile(file: File): Promise<BMCData> {
+function normalizeWorkspacePayload(parsed: unknown): BMCWorkspace {
+  const maybeWorkspace = parsed as Partial<BMCWorkspace> | Partial<BMCData>;
+  const maybeData = 'data' in (maybeWorkspace ?? {}) ? (maybeWorkspace as Partial<BMCWorkspace>).data : maybeWorkspace;
+
+  return {
+    data: { ...defaultBMCData, ...(maybeData as Partial<BMCData>) },
+    companyName:
+      'companyName' in (maybeWorkspace ?? {}) && typeof (maybeWorkspace as Partial<BMCWorkspace>).companyName === 'string'
+        ? (maybeWorkspace as Partial<BMCWorkspace>).companyName ?? ''
+        : '',
+    teamName:
+      'teamName' in (maybeWorkspace ?? {}) && typeof (maybeWorkspace as Partial<BMCWorkspace>).teamName === 'string'
+        ? (maybeWorkspace as Partial<BMCWorkspace>).teamName ?? ''
+        : '',
+  };
+}
+
+export function parseJSONFile(file: File): Promise<BMCWorkspace> {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
     reader.onload = (e) => {
       try {
-        const parsed = JSON.parse(e.target?.result as string) as Partial<BMCData>;
-        resolve({ ...defaultBMCData, ...parsed });
+        const parsed = JSON.parse(e.target?.result as string) as unknown;
+        resolve(normalizeWorkspacePayload(parsed));
       } catch {
         reject(new Error('Invalid JSON file'));
       }

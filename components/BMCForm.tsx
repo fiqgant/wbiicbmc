@@ -3,7 +3,7 @@
 import { useState, KeyboardEvent, useRef } from 'react';
 import { X, Plus, ChevronDown, ChevronUp, ClipboardList, FolderOpen, CheckSquare } from 'lucide-react';
 import { useBMC } from '@/context/BMCContext';
-import { blockMeta, sampleBMCData } from '@/lib/defaultData';
+import { blockMeta, sampleBMCWorkspaces } from '@/lib/defaultData';
 import { BMCBlockKey } from '@/lib/types';
 import { blockGuides, fillOrderSteps, fillOrderSummary } from '@/lib/guide';
 import BlockIcon from '@/components/icons/BlockIcon';
@@ -214,7 +214,8 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
 }
 
 export default function BMCForm() {
-  const { theme, loadData, resetData, companyName, setCompanyName } = useBMC();
+  const { theme, loadWorkspace, resetData, companyName, setCompanyName, teamName, setTeamName } = useBMC();
+  const [selectedSampleId, setSelectedSampleId] = useState(sampleBMCWorkspaces[0]?.id ?? '');
 
   const isHijau = theme.id === 'hijau';
   const isNeo   = theme.id === 'neobrutalism';
@@ -255,6 +256,26 @@ export default function BMCForm() {
             fontFamily: isNeo ? 'monospace' : 'inherit',
           }}
         />
+        <label
+          className="block text-[10px] font-bold uppercase tracking-widest mt-3 mb-1.5"
+          style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#94a3b8' : '#9ca3af' }}
+        >
+          Nama Tim
+        </label>
+        <input
+          type="text"
+          value={teamName}
+          onChange={(e) => setTeamName(e.target.value)}
+          placeholder="Contoh: Tim Inovasi WBI"
+          className="w-full px-3 py-2 text-sm font-semibold focus:outline-none"
+          style={{
+            background: isHijau ? '#1a4a2e' : isNeo ? '#1a1a1a' : isCorp ? '#1e293b' : '#f9fafb',
+            border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#334155' : '#e5e7eb'}`,
+            color: isHijau ? '#fff' : isNeo ? '#fde047' : isCorp ? '#f1f5f9' : '#111827',
+            borderRadius: isNeo ? 0 : 4,
+            fontFamily: isNeo ? 'monospace' : 'inherit',
+          }}
+        />
       </div>
 
       {/* ── Toolbar ── */}
@@ -271,9 +292,32 @@ export default function BMCForm() {
         >
           Isi Canvas Kamu
         </span>
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap gap-2 sm:items-center">
+          <select
+            value={selectedSampleId}
+            onChange={(e) => setSelectedSampleId(e.target.value)}
+            className="text-xs px-2 py-1"
+            style={{
+              border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : '#e5e7eb'}`,
+              color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#475569' : '#6b7280',
+              background: '#fff',
+              borderRadius: isNeo ? 0 : 4,
+              fontFamily: isNeo ? 'monospace' : 'inherit',
+              fontWeight: isNeo ? 900 : 500,
+            }}
+            aria-label="Pilih contoh studi kasus"
+          >
+            {sampleBMCWorkspaces.map((sample) => (
+              <option key={sample.id} value={sample.id}>
+                {sample.label}
+              </option>
+            ))}
+          </select>
           <button
-            onClick={() => loadData(sampleBMCData)}
+            onClick={() => {
+              const selectedSample = sampleBMCWorkspaces.find((sample) => sample.id === selectedSampleId);
+              if (selectedSample) loadWorkspace(selectedSample);
+            }}
             className="text-xs px-2 py-1 transition-colors"
             style={{
               border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : '#e5e7eb'}`,
@@ -301,6 +345,24 @@ export default function BMCForm() {
             Reset
           </button>
         </div>
+      </div>
+
+      <div
+        className="px-4 py-2 border-b flex-shrink-0"
+        style={{
+          background: isHijau ? '#f0faf5' : isNeo ? '#fffde7' : isCorp ? '#f8fafc' : '#f9fafb',
+          borderColor: isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#e2e8f0' : '#f0f0f0',
+        }}
+      >
+        <p
+          className="text-[11px] leading-5"
+          style={{
+            color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#475569' : '#6b7280',
+            fontFamily: isNeo ? 'monospace' : 'inherit',
+          }}
+        >
+          {sampleBMCWorkspaces.find((sample) => sample.id === selectedSampleId)?.summary}
+        </p>
       </div>
 
       <div

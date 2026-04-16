@@ -11,6 +11,12 @@ export type BMCBlockKey =
 
 export type BMCData = Record<BMCBlockKey, string[]>;
 
+export interface BMCWorkspace {
+  data: BMCData;
+  companyName: string;
+  teamName: string;
+}
+
 export type ThemeId = 'hijau' | 'minimalist' | 'neobrutalism' | 'corporate';
 
 export interface BlockMeta {

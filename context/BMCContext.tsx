@@ -9,7 +9,7 @@ import React, {
   useRef,
   ReactNode,
 } from 'react';
-import { BMCData, BMCBlockKey, ThemeId, ThemeConfig } from '@/lib/types';
+import { BMCData, BMCBlockKey, BMCWorkspace, ThemeId, ThemeConfig } from '@/lib/types';
 import { defaultBMCData } from '@/lib/defaultData';
 import { themes } from '@/lib/themes';
 import {
@@ -19,6 +19,8 @@ import {
   saveThemeToStorage,
   loadCompanyNameFromStorage,
   saveCompanyNameToStorage,
+  loadTeamNameFromStorage,
+  saveTeamNameToStorage,
 } from '@/lib/storage';
 
 interface BMCContextValue {
@@ -27,6 +29,7 @@ interface BMCContextValue {
   addItem: (key: BMCBlockKey, text: string) => void;
   removeItem: (key: BMCBlockKey, index: number) => void;
   loadData: (data: BMCData) => void;
+  loadWorkspace: (workspace: BMCWorkspace) => void;
   resetData: () => void;
   themeId: ThemeId;
   setThemeId: (id: ThemeId) => void;
@@ -36,6 +39,8 @@ interface BMCContextValue {
   setActiveFormBlock: (key: BMCBlockKey | null) => void;
   companyName: string;
   setCompanyName: (name: string) => void;
+  teamName: string;
+  setTeamName: (name: string) => void;
 }
 
 const BMCContext = createContext<BMCContextValue | null>(null);
@@ -46,6 +51,7 @@ export function BMCProvider({ children }: { children: ReactNode }) {
   const [activeFormBlock, setActiveFormBlock] = useState<BMCBlockKey | null>(null);
   const [hydrated, setHydrated] = useState(false);
   const [companyName, setCompanyNameState] = useState('');
+  const [teamName, setTeamNameState] = useState('');
   const canvasRef = useRef<HTMLDivElement>(null);
 
   // Load persisted state after mount
@@ -58,6 +64,8 @@ export function BMCProvider({ children }: { children: ReactNode }) {
     }
     const storedName = loadCompanyNameFromStorage();
     if (storedName) setCompanyNameState(storedName);
+    const storedTeamName = loadTeamNameFromStorage();
+    if (storedTeamName) setTeamNameState(storedTeamName);
     setHydrated(true);
   }, []);
 
@@ -100,6 +108,15 @@ export function BMCProvider({ children }: { children: ReactNode }) {
     persistData(newData);
   }, [persistData]);
 
+  const loadWorkspace = useCallback((workspace: BMCWorkspace) => {
+    setData(workspace.data);
+    setCompanyNameState(workspace.companyName);
+    setTeamNameState(workspace.teamName);
+    persistData(workspace.data);
+    saveCompanyNameToStorage(workspace.companyName);
+    saveTeamNameToStorage(workspace.teamName);
+  }, [persistData]);
+
   const resetData = useCallback(() => {
     setData(defaultBMCData);
     persistData(defaultBMCData);
@@ -115,6 +132,11 @@ export function BMCProvider({ children }: { children: ReactNode }) {
     saveCompanyNameToStorage(name);
   }, []);
 
+  const setTeamName = useCallback((name: string) => {
+    setTeamNameState(name);
+    saveTeamNameToStorage(name);
+  }, []);
+
   const theme = themes[themeId];
 
   return (
@@ -125,6 +147,7 @@ export function BMCProvider({ children }: { children: ReactNode }) {
         addItem,
         removeItem,
         loadData,
+        loadWorkspace,
         resetData,
         themeId,
         setThemeId,
@@ -134,6 +157,8 @@ export function BMCProvider({ children }: { children: ReactNode }) {
         setActiveFormBlock,
         companyName,
         setCompanyName,
+        teamName,
+        setTeamName,
       }}
     >
       {children}
