@@ -8,6 +8,48 @@ export default function ExportButtons() {
   const { theme, canvasRef, data, companyName, teamName, loadWorkspace } = useBMC();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  const toolbarClass =
+    theme.id === 'hijau'
+      ? 'border-[#50918B] bg-[#f0faf5]'
+      : theme.id === 'neobrutalism'
+      ? 'border-black bg-yellow-100'
+      : theme.id === 'corporate'
+      ? 'border-slate-200 bg-slate-50'
+      : theme.id === 'blueprint'
+      ? 'border-sky-700 bg-sky-950'
+      : theme.id === 'paper'
+      ? 'border-[#d9c8ad] bg-[#f7f1e3]'
+      : theme.id === 'playfulEducation'
+      ? 'border-violet-100 bg-white'
+      : theme.id === 'notion'
+      ? 'border-[#eceae5] bg-[#fbfbfa]'
+      : theme.id === 'glassmorphism'
+      ? 'border-white/10 bg-white/10 backdrop-blur-xl'
+      : theme.id === 'startupPitchDeck'
+      ? 'border-slate-800 bg-slate-950'
+      : 'border-gray-200 bg-white';
+
+  const labelClass =
+    theme.id === 'hijau'
+      ? 'text-[#133622] font-bold'
+      : theme.id === 'neobrutalism'
+      ? 'text-black font-black font-mono'
+      : theme.id === 'corporate'
+      ? 'text-slate-600'
+      : theme.id === 'blueprint'
+      ? 'text-sky-200 font-bold font-mono'
+      : theme.id === 'paper'
+      ? 'text-[#5b4631] font-semibold'
+      : theme.id === 'playfulEducation'
+      ? 'text-violet-600 font-bold'
+      : theme.id === 'notion'
+      ? 'text-[#787774]'
+      : theme.id === 'glassmorphism'
+      ? 'text-white/75 font-semibold'
+      : theme.id === 'startupPitchDeck'
+      ? 'text-fuchsia-300 font-bold'
+      : 'text-gray-400';
+
   const exportPng = async () => {
     const node = canvasRef.current;
     if (!node) return;
@@ -104,26 +146,14 @@ export default function ExportButtons() {
     <div
       className={[
         'flex flex-col gap-2 px-3 py-2 border-b sm:flex-row sm:flex-wrap sm:items-center',
-        theme.id === 'hijau'
-          ? 'border-[#50918B] bg-[#f0faf5]'
-          : theme.id === 'neobrutalism'
-          ? 'border-black bg-yellow-100'
-          : theme.id === 'corporate'
-          ? 'border-slate-200 bg-slate-50'
-          : 'border-gray-200 bg-white',
+        toolbarClass,
       ].join(' ')}
     >
       <div className="flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
         <span
           className={[
             'text-xs font-semibold uppercase tracking-wider mr-1',
-            theme.id === 'hijau'
-              ? 'text-[#133622] font-bold'
-              : theme.id === 'neobrutalism'
-              ? 'text-black font-black font-mono'
-              : theme.id === 'corporate'
-              ? 'text-slate-600'
-              : 'text-gray-400',
+            labelClass,
           ].join(' ')}
         >
           Ekspor:
@@ -146,7 +176,7 @@ export default function ExportButtons() {
         <span
           className={[
             'text-xs font-semibold uppercase tracking-wider mr-1',
-            theme.id === 'hijau' ? 'text-[#133622] font-bold' : theme.id === 'neobrutalism' ? 'text-black font-black font-mono' : theme.id === 'corporate' ? 'text-slate-600' : 'text-gray-400',
+            labelClass,
           ].join(' ')}
         >
           Data JSON:

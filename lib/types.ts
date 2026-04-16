@@ -17,7 +17,17 @@ export interface BMCWorkspace {
   teamName: string;
 }
 
-export type ThemeId = 'hijau' | 'minimalist' | 'neobrutalism' | 'corporate';
+export type ThemeId =
+  | 'hijau'
+  | 'minimalist'
+  | 'neobrutalism'
+  | 'corporate'
+  | 'blueprint'
+  | 'paper'
+  | 'playfulEducation'
+  | 'notion'
+  | 'glassmorphism'
+  | 'startupPitchDeck';
 
 export interface BlockMeta {
   key: BMCBlockKey;

@@ -59,8 +59,8 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
   const isNeo = theme.id === 'neobrutalism';
   const isCorp = theme.id === 'corporate';
 
-  const accentColor = isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#1d4ed8' : '#3b82f6';
-  const headerBg = isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#1e3a5f' : '#1e293b';
+  const accentColor = isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#1d4ed8' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#191919' : theme.id === 'glassmorphism' ? '#67e8f9' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#3b82f6';
+  const headerBg = isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#1e3a5f' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#f7f1e3' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#191919' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.12)' : theme.id === 'startupPitchDeck' ? '#111827' : '#1e293b';
 
   return (
     <div
@@ -71,9 +71,9 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
       <div
         className="relative w-full max-w-3xl max-h-[88vh] flex flex-col overflow-hidden rounded-lg"
         style={{
-          background: '#fff',
-          boxShadow: isNeo ? '8px 8px 0 #000' : '0 24px 64px rgba(0,0,0,0.25)',
-          border: isNeo ? '3px solid #000' : 'none',
+          background: theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.9)' : '#fff',
+          boxShadow: isNeo ? '8px 8px 0 #000' : theme.id === 'glassmorphism' ? '0 24px 64px rgba(15,23,42,0.35)' : '0 24px 64px rgba(0,0,0,0.25)',
+          border: isNeo ? '3px solid #000' : theme.id === 'glassmorphism' ? '1px solid rgba(255,255,255,0.35)' : 'none',
           borderRadius: isNeo ? '0' : '8px',
         }}
         onClick={(e) => e.stopPropagation()}
@@ -86,7 +86,7 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
           <div>
             <div
               style={{
-                color: '#fff',
+                color: theme.id === 'paper' ? '#5b4631' : '#fff',
                 fontWeight: 800,
                 fontSize: '15px',
                 letterSpacing: isNeo ? '0.1em' : '0.02em',
@@ -96,14 +96,14 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
             >
               <span style={{ display: 'flex', alignItems: 'center', gap: 8 }}><BookOpen size={16} strokeWidth={2} /> Panduan Mengisi BMC</span>
             </div>
-            <div style={{ color: '#94a3b8', fontSize: '11px', marginTop: 2 }}>
-              Baca panduan ini sebelum mengisi setiap blok
+              <div style={{ color: theme.id === 'paper' ? '#8b7355' : theme.id === 'glassmorphism' ? '#dbeafe' : '#94a3b8', fontSize: '11px', marginTop: 2 }}>
+                Baca panduan ini sebelum mengisi setiap blok
+              </div>
             </div>
-          </div>
           <button
             onClick={onClose}
             style={{
-              color: '#94a3b8',
+              color: theme.id === 'paper' ? '#8b7355' : theme.id === 'glassmorphism' ? '#e2e8f0' : '#94a3b8',
               fontSize: '20px',
               lineHeight: 1,
               background: 'none',
@@ -122,7 +122,7 @@ export default function GuideModal({ open, onClose, initialBlock }: Props) {
           style={{
             display: 'flex',
             borderBottom: '1px solid #e5e7eb',
-            background: '#f9fafb',
+              background: theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fffaf0' : theme.id === 'playfulEducation' ? '#faf5ff' : theme.id === 'notion' ? '#f7f6f3' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.08)' : theme.id === 'startupPitchDeck' ? '#111827' : '#f9fafb',
             flexShrink: 0,
           }}
         >

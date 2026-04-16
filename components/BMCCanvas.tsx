@@ -42,6 +42,18 @@ function CanvasBlock({
       ? '#000000'
       : theme.id === 'corporate'
       ? '#1d4ed8'
+      : theme.id === 'blueprint'
+      ? '#67e8f9'
+      : theme.id === 'paper'
+      ? '#8b6b4a'
+      : theme.id === 'playfulEducation'
+      ? '#8b5cf6'
+      : theme.id === 'notion'
+      ? '#191919'
+      : theme.id === 'glassmorphism'
+      ? '#ffffff'
+      : theme.id === 'startupPitchDeck'
+      ? '#d946ef'
       : '#64748b';
   const watermarkOpacity = isHighlighted
     ? theme.id === 'neobrutalism'
@@ -67,7 +79,7 @@ function CanvasBlock({
         overflow: 'hidden',
         borderRadius: theme.blockRadius,
         background: theme.blockBg[blockKey],
-        outline: isHighlighted ? `2px solid ${theme.id === 'neobrutalism' ? '#facc15' : '#3b82f6'}` : 'none',
+        outline: isHighlighted ? `2px solid ${theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#b08968' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#191919' : theme.id === 'glassmorphism' ? '#67e8f9' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#3b82f6'}` : 'none',
         outlineOffset: '-2px',
         transition: 'outline 0.15s',
         ...borderStyle,
@@ -138,7 +150,7 @@ function CanvasBlock({
               position: 'relative',
               zIndex: 1,
               fontSize: '10px',
-              color: theme.id === 'neobrutalism' ? '#555' : '#9ca3af',
+              color: theme.id === 'neobrutalism' ? '#555' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#9b9995' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.72)' : theme.id === 'startupPitchDeck' ? '#a78bfa' : '#9ca3af',
               fontStyle: theme.id === 'neobrutalism' ? 'normal' : 'italic',
               fontFamily: theme.id === 'neobrutalism' ? 'monospace' : 'inherit',
             }}
@@ -192,7 +204,7 @@ function CanvasLegend({ theme }: { theme: ThemeConfig }) {
         justifyContent: 'space-between',
         padding: '5px 12px',
         borderBottom: `1px solid ${theme.dividerColor}`,
-        background: theme.id === 'hijau' ? '#1a4a2e' : theme.id === 'neobrutalism' ? '#000' : theme.id === 'corporate' ? '#1e3a5f' : '#f9fafb',
+        background: theme.id === 'hijau' ? '#1a4a2e' : theme.id === 'neobrutalism' ? '#000' : theme.id === 'corporate' ? '#1e3a5f' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fdf6ea' : theme.id === 'playfulEducation' ? '#faf5ff' : theme.id === 'notion' ? '#f7f6f3' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.08)' : theme.id === 'startupPitchDeck' ? '#111827' : '#f9fafb',
         flexShrink: 0,
       }}
     >
@@ -204,7 +216,7 @@ function CanvasLegend({ theme }: { theme: ThemeConfig }) {
             fontWeight: 700,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: theme.id === 'hijau' ? '#7fba9a' : theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'corporate' ? '#93c5fd' : '#9ca3af',
+            color: theme.id === 'hijau' ? '#7fba9a' : theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'corporate' ? '#93c5fd' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#9b9995' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.72)' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af',
           }}
         >
           Infrastruktur
@@ -218,7 +230,7 @@ function CanvasLegend({ theme }: { theme: ThemeConfig }) {
             fontWeight: 700,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: theme.id === 'hijau' ? '#7fba9a' : theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'corporate' ? '#93c5fd' : '#9ca3af',
+            color: theme.id === 'hijau' ? '#7fba9a' : theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'corporate' ? '#93c5fd' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#9b9995' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.72)' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af',
           }}
         >
           Proposisi Nilai
@@ -232,7 +244,7 @@ function CanvasLegend({ theme }: { theme: ThemeConfig }) {
             fontWeight: 700,
             letterSpacing: '0.1em',
             textTransform: 'uppercase',
-            color: theme.id === 'hijau' ? '#7fba9a' : theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'corporate' ? '#93c5fd' : '#9ca3af',
+            color: theme.id === 'hijau' ? '#7fba9a' : theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'corporate' ? '#93c5fd' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#9b9995' : theme.id === 'glassmorphism' ? 'rgba(255,255,255,0.72)' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af',
           }}
         >
           Pelanggan
@@ -251,7 +263,7 @@ export default function BMCCanvas() {
   return (
     <div
       className={`flex h-full w-full min-h-0 flex-col ${theme.canvasOuterBg} ${theme.fontClass}`}
-      style={{ padding: theme.id === 'neobrutalism' ? '14px' : '10px' }}
+      style={{ padding: theme.id === 'neobrutalism' ? '14px' : theme.id === 'glassmorphism' ? '12px' : '10px' }}
     >
       {/* Wrapper card */}
       <div
@@ -262,7 +274,23 @@ export default function BMCCanvas() {
           'overflow-hidden flex-1 flex flex-col',
         ].join(' ')}
         style={{
-          background: theme.canvasWrapperBg === 'bg-white' ? '#ffffff' : theme.id === 'neobrutalism' ? '#fffcf2' : '#f8fafc',
+          background: theme.id === 'neobrutalism'
+            ? '#fffcf2'
+            : theme.id === 'glassmorphism'
+            ? 'rgba(255,255,255,0.10)'
+            : theme.id === 'blueprint'
+            ? '#082f49'
+            : theme.id === 'paper'
+            ? '#fffaf0'
+            : theme.id === 'playfulEducation'
+            ? '#ffffff'
+            : theme.id === 'notion'
+            ? '#ffffff'
+            : theme.id === 'startupPitchDeck'
+            ? '#ffffff'
+            : theme.canvasWrapperBg === 'bg-white'
+            ? '#ffffff'
+            : '#f8fafc',
           minHeight: 0,
         }}
       >
@@ -275,13 +303,25 @@ export default function BMCCanvas() {
             gap: '12px',
             flexWrap: 'wrap',
             padding: '8px 14px',
-            background:
-              theme.id === 'hijau'
-                ? '#133622'
+              background:
+                theme.id === 'hijau'
+                  ? '#133622'
                 : theme.id === 'neobrutalism'
-                ? '#000'
+                  ? '#000'
                 : theme.id === 'corporate'
-                ? '#1e3a5f'
+                  ? '#1e3a5f'
+                : theme.id === 'blueprint'
+                  ? '#082f49'
+                : theme.id === 'paper'
+                  ? '#f7f1e3'
+                : theme.id === 'playfulEducation'
+                  ? '#8b5cf6'
+                : theme.id === 'notion'
+                  ? '#f7f6f3'
+                : theme.id === 'glassmorphism'
+                  ? 'rgba(255,255,255,0.10)'
+                : theme.id === 'startupPitchDeck'
+                  ? '#111827'
                 : '#ffffff',
             borderBottom: `2px solid ${theme.dividerColor}`,
             flexShrink: 0,
@@ -301,8 +341,20 @@ export default function BMCCanvas() {
                     ? '#fef08a'
                     : theme.id === 'corporate'
                     ? '#ffffff'
+                    : theme.id === 'blueprint'
+                    ? '#e0f2fe'
+                    : theme.id === 'paper'
+                    ? '#5b4631'
+                    : theme.id === 'playfulEducation'
+                    ? '#ffffff'
+                    : theme.id === 'notion'
+                    ? '#191919'
+                    : theme.id === 'glassmorphism'
+                    ? '#ffffff'
+                    : theme.id === 'startupPitchDeck'
+                    ? '#ffffff'
                     : '#111827',
-                fontFamily: theme.id === 'neobrutalism' ? 'monospace' : theme.id === 'corporate' ? 'Georgia, serif' : 'inherit',
+                fontFamily: theme.id === 'neobrutalism' ? 'monospace' : theme.id === 'corporate' || theme.id === 'paper' ? 'Georgia, serif' : 'inherit',
               }}
             >
               Business Model Canvas
@@ -318,6 +370,18 @@ export default function BMCCanvas() {
                     ? '#fde047'
                     : theme.id === 'corporate'
                     ? '#bfdbfe'
+                    : theme.id === 'blueprint'
+                    ? '#67e8f9'
+                    : theme.id === 'paper'
+                    ? '#8b6b4a'
+                    : theme.id === 'playfulEducation'
+                    ? '#ddd6fe'
+                    : theme.id === 'notion'
+                    ? '#52525b'
+                    : theme.id === 'glassmorphism'
+                    ? '#e0f2fe'
+                    : theme.id === 'startupPitchDeck'
+                    ? '#f0abfc'
                     : '#374151'
                   : theme.id === 'hijau'
                   ? '#3a6648'
@@ -325,11 +389,23 @@ export default function BMCCanvas() {
                   ? '#6b7280'
                   : theme.id === 'corporate'
                   ? '#64748b'
+                  : theme.id === 'blueprint'
+                  ? '#7dd3fc'
+                  : theme.id === 'paper'
+                  ? '#a38b6d'
+                  : theme.id === 'playfulEducation'
+                  ? '#c4b5fd'
+                  : theme.id === 'notion'
+                  ? '#d1d5db'
+                  : theme.id === 'glassmorphism'
+                  ? 'rgba(255,255,255,0.55)'
+                  : theme.id === 'startupPitchDeck'
+                  ? '#a78bfa'
                   : '#d1d5db',
                 letterSpacing: companyName ? '0.03em' : '0.06em',
                 textTransform: companyName ? 'none' : 'uppercase',
                 fontStyle: companyName ? 'normal' : 'italic',
-                fontFamily: theme.id === 'neobrutalism' ? 'monospace' : theme.id === 'corporate' ? 'Georgia, serif' : 'inherit',
+                fontFamily: theme.id === 'neobrutalism' ? 'monospace' : theme.id === 'corporate' || theme.id === 'paper' ? 'Georgia, serif' : 'inherit',
                 transition: 'all 0.2s ease',
               }}
             >

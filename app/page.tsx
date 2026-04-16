@@ -14,65 +14,83 @@ function AppInner() {
   const { theme } = useBMC();
   const [guideOpen, setGuideOpen] = useState(false);
 
-  const isHijau = theme.id === "hijau";
-  const isNeo = theme.id === "neobrutalism";
-  const isCorp = theme.id === "corporate";
+  const pandanBtnStyle: React.CSSProperties =
+    theme.id === "hijau"
+      ? { background: "#AC7B2E", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 700, borderRadius: 4, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+      : theme.id === "neobrutalism"
+        ? { background: "#fde047", color: "#000", border: "2px solid #fde047", padding: "5px 14px", fontSize: "12px", fontWeight: 900, fontFamily: "monospace", cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+        : theme.id === "corporate"
+          ? { background: "#3b82f6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 700, borderRadius: 2, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+          : theme.id === "blueprint"
+            ? { background: "#67e8f9", color: "#082f49", border: "1px solid #67e8f9", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 2, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, fontFamily: "monospace" }
+            : theme.id === "paper"
+              ? { background: "#8b6b4a", color: "#fffaf0", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 700, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+              : theme.id === "playfulEducation"
+                ? { background: "#8b5cf6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+                : theme.id === "notion"
+                  ? { background: "#191919", color: "#fff", border: "1px solid #191919", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+                  : theme.id === "glassmorphism"
+                    ? { background: "rgba(255,255,255,0.18)", color: "#fff", border: "1px solid rgba(255,255,255,0.28)", padding: "5px 14px", fontSize: "12px", fontWeight: 700, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, backdropFilter: "blur(10px)" }
+                    : theme.id === "startupPitchDeck"
+                      ? { background: "#d946ef", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 8, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+                      : { background: "#3b82f6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 };
 
-  const pandanBtnStyle: React.CSSProperties = isHijau
-    ? {
-        background: "#AC7B2E",
-        color: "#fff",
-        border: "none",
-        padding: "5px 14px",
-        fontSize: "12px",
-        fontWeight: 700,
-        borderRadius: 4,
-        cursor: "pointer",
-        display: "flex",
-        alignItems: "center",
-        gap: 6,
-      }
-    : isNeo
-      ? {
-          background: "#fde047",
-          color: "#000",
-          border: "2px solid #fde047",
-          padding: "5px 14px",
-          fontSize: "12px",
-          fontWeight: 900,
-          fontFamily: "monospace",
-          cursor: "pointer",
-          display: "flex",
-          alignItems: "center",
-          gap: 6,
-        }
-      : isCorp
-        ? {
-            background: "#3b82f6",
-            color: "#fff",
-            border: "none",
-            padding: "5px 14px",
-            fontSize: "12px",
-            fontWeight: 700,
-            borderRadius: 2,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-          }
-        : {
-            background: "#3b82f6",
-            color: "#fff",
-            border: "none",
-            padding: "5px 14px",
-            fontSize: "12px",
-            fontWeight: 600,
-            borderRadius: 6,
-            cursor: "pointer",
-            display: "flex",
-            alignItems: "center",
-            gap: 6,
-          };
+  const headerShadow =
+    theme.id === "hijau"
+      ? "0 2px 8px rgba(19,54,34,0.4)"
+      : theme.id === "neobrutalism"
+        ? "0 4px 0 #000"
+        : theme.id === "corporate"
+          ? "0 1px 8px rgba(0,0,0,0.3)"
+          : theme.id === "blueprint"
+            ? "0 2px 16px rgba(14,165,233,0.18)"
+            : theme.id === "paper"
+              ? "0 1px 8px rgba(91,70,49,0.1)"
+              : theme.id === "playfulEducation"
+                ? "0 10px 24px rgba(124,58,237,0.16)"
+                : theme.id === "glassmorphism"
+                  ? "0 8px 28px rgba(15,23,42,0.22)"
+                  : theme.id === "startupPitchDeck"
+                    ? "0 12px 30px rgba(217,70,239,0.18)"
+                    : "0 1px 4px rgba(0,0,0,0.06)";
+
+  const badgeStyle: React.CSSProperties =
+    theme.id === "hijau"
+      ? { background: "#50918B", color: "#fff", borderRadius: 4, border: "none" }
+      : theme.id === "neobrutalism"
+        ? { background: "#fde047", color: "#000", borderRadius: 0, border: "2px solid #fde047" }
+        : theme.id === "corporate"
+          ? { background: "#3b82f6", color: "#fff", borderRadius: 4, border: "none" }
+          : theme.id === "blueprint"
+            ? { background: "#67e8f9", color: "#082f49", borderRadius: 2, border: "1px solid #67e8f9" }
+            : theme.id === "paper"
+              ? { background: "#d1b08a", color: "#5b4631", borderRadius: 6, border: "1px solid #d1b08a" }
+              : theme.id === "playfulEducation"
+                ? { background: "#8b5cf6", color: "#fff", borderRadius: 10, border: "none" }
+                : theme.id === "notion"
+                  ? { background: "#191919", color: "#fff", borderRadius: 4, border: "none" }
+                  : theme.id === "glassmorphism"
+                    ? { background: "rgba(255,255,255,0.18)", color: "#fff", borderRadius: 10, border: "1px solid rgba(255,255,255,0.28)" }
+                    : { background: "#d946ef", color: "#fff", borderRadius: 8, border: "none" };
+
+  const footerStyle: React.CSSProperties =
+    theme.id === "hijau"
+      ? { background: "#133622", color: "#50918B", borderColor: "#1a4a2e", fontFamily: "inherit" }
+      : theme.id === "neobrutalism"
+        ? { background: "#000", color: "#fde047", borderColor: "#000", fontFamily: "monospace" }
+        : theme.id === "corporate"
+          ? { background: "#0f172a", color: "#475569", borderColor: "#1e293b", fontFamily: "inherit" }
+          : theme.id === "blueprint"
+            ? { background: "#082f49", color: "#7dd3fc", borderColor: "#0c4a6e", fontFamily: "monospace" }
+            : theme.id === "paper"
+              ? { background: "#f7f1e3", color: "#8b7355", borderColor: "#d9c8ad", fontFamily: "Georgia, serif" }
+              : theme.id === "playfulEducation"
+                ? { background: "#ffffff", color: "#7c3aed", borderColor: "#ddd6fe", fontFamily: "inherit" }
+                : theme.id === "notion"
+                  ? { background: "#fbfbfa", color: "#787774", borderColor: "#eceae5", fontFamily: "inherit" }
+                  : theme.id === "glassmorphism"
+                    ? { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.72)", borderColor: "rgba(255,255,255,0.12)", fontFamily: "inherit", backdropFilter: "blur(12px)" }
+                    : { background: "#111827", color: "#c4b5fd", borderColor: "#1f2937", fontFamily: "inherit" };
 
   return (
     <div
@@ -81,32 +99,13 @@ function AppInner() {
       {/* ── Top header bar ── */}
       <header
         className={`z-10 flex flex-shrink-0 flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:justify-between ${theme.headerBg}`}
-        style={{
-          boxShadow: isHijau
-            ? "0 2px 8px rgba(19,54,34,0.4)"
-            : isNeo
-              ? "0 4px 0 #000"
-              : isCorp
-                ? "0 1px 8px rgba(0,0,0,0.3)"
-                : "0 1px 4px rgba(0,0,0,0.06)",
-        }}
+        style={{ boxShadow: headerShadow }}
       >
         {/* Logo + title */}
         <div className="flex items-center gap-3">
           <div
             className="w-7 h-7 flex items-center justify-center text-sm font-black flex-shrink-0"
-            style={{
-              background: isHijau
-                ? "#50918B"
-                : isNeo
-                  ? "#fde047"
-                  : isCorp
-                    ? "#3b82f6"
-                    : "#3b82f6",
-              color: isHijau ? "#fff" : isNeo ? "#000" : "#fff",
-              borderRadius: isNeo ? 0 : 4,
-              border: isNeo ? "2px solid #fde047" : "none",
-            }}
+            style={badgeStyle}
           >
             B
           </div>
@@ -162,30 +161,7 @@ function AppInner() {
       {/* ── Footer ── */}
       <footer
         className="border-t px-4 py-2 text-center text-[10px] leading-relaxed flex-shrink-0"
-        style={{
-          background: isHijau
-            ? "#133622"
-            : isNeo
-              ? "#000"
-              : isCorp
-                ? "#0f172a"
-                : "#fff",
-          color: isHijau
-            ? "#50918B"
-            : isNeo
-              ? "#fde047"
-              : isCorp
-                ? "#475569"
-                : "#9ca3af",
-          borderColor: isHijau
-            ? "#1a4a2e"
-            : isNeo
-              ? "#000"
-              : isCorp
-                ? "#1e293b"
-                : "#f3f4f6",
-          fontFamily: isNeo ? "monospace" : "inherit",
-        }}
+        style={footerStyle}
       >
         Business Model Canvas · Alexander Osterwalder &amp; Yves Pigneur ·
         Politeknik WBI — WBI Business Initiative Center
