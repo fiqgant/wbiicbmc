@@ -13,6 +13,11 @@ export const metadata: Metadata = {
   title: 'BMC Generator — Business Model Canvas',
   description:
     'Create, visualize, and export a professional Business Model Canvas with multiple themes.',
+  icons: {
+    icon: 'https://wbi.ac.id/favicon.png',
+    shortcut: 'https://wbi.ac.id/favicon.png',
+    apple: 'https://wbi.ac.id/favicon.png',
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

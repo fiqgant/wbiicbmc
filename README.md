@@ -1,17 +1,17 @@
 # BMC Generator
 
-Aplikasi **Business Model Canvas Generator** berbasis **Next.js** untuk membantu menyusun, memvisualisasikan, dan mengekspor canvas bisnis secara cepat. Proyek ini menampilkan editor 9 blok BMC, preview canvas real-time, panduan pengisian, pilihan tema visual, serta ekspor ke **PNG**, **PDF**, dan **JSON**.
+A **Next.js**-based **Business Model Canvas Generator** application that helps users quickly create, visualize, and export business canvases. This project includes a 9-block BMC editor, real-time canvas preview, guided content prompts, multiple visual themes, and export support for **PNG**, **PDF**, and **JSON**.
 
-## Fitur Utama
+## Key Features
 
-- Editor untuk 9 blok Business Model Canvas
-- Preview canvas real-time
-- Input nama usaha
-- Panduan pengisian BMC per blok
-- Tema tampilan: **WBI**, **Minimalist**, **Neobrutalism**, dan **Corporate**
-- Ekspor hasil ke **PNG** dan **PDF**
-- Simpan dan muat data canvas dalam format **JSON**
-- Penyimpanan otomatis data, tema, dan nama usaha ke `localStorage`
+- Editor for all 9 Business Model Canvas blocks
+- Real-time canvas preview
+- Business name input
+- Block-by-block BMC writing guidance
+- Visual themes: **WBI**, **Minimalist**, **Neobrutalism**, and **Corporate**
+- Export to **PNG** and **PDF**
+- Save and load canvas data in **JSON** format
+- Automatic persistence of canvas data, theme, and business name in `localStorage`
 
 ## Stack
 
@@ -23,32 +23,28 @@ Aplikasi **Business Model Canvas Generator** berbasis **Next.js** untuk membantu
 - `jspdf`
 - `lucide-react`
 
-## Menjalankan Proyek
+## Running the Project
 
 ```bash
 npm install
 npm run dev
 ```
 
-Lalu buka `http://localhost:3000`.
+Then open `http://localhost:3000`.
 
-## Build Produksi
+## Production Build
 
 ```bash
 npm run build
 npm run start
 ```
 
-## Struktur Singkat
+## Project Structure
 
 ```text
-app/         Halaman utama Next.js App Router
-components/  Form, canvas, export, modal panduan, theme switcher
-context/     State global Business Model Canvas
-lib/         Tipe, tema, data default, storage, panduan
-public/      Asset statis seperti logo
+app/         Main pages using the Next.js App Router
+components/  Form, canvas, export, guide modal, theme switcher
+context/     Global Business Model Canvas state
+lib/         Types, themes, default data, storage, guidance
+public/      Static assets such as logos
 ```
-
-## Tujuan Proyek
-
-Proyek ini ditujukan untuk mendukung proses perancangan model bisnis yang lebih terstruktur, visual, dan mudah didokumentasikan, khususnya pada konteks **WBI Politeknik / WBIIC Business Initiative Center**.
