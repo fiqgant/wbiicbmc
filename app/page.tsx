@@ -1,13 +1,22 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import { BookOpen } from "lucide-react";
 import { BMCProvider, useBMC } from "@/context/BMCContext";
 import BMCForm from "@/components/BMCForm";
 import BMCCanvas from "@/components/BMCCanvas";
 import ThemeSwitcher from "@/components/ThemeSwitcher";
-import ExportButtons from "@/components/ExportButtons";
 import GuideModal from "@/components/GuideModal";
+
+const ExportButtons = dynamic(() => import("@/components/ExportButtons"), {
+  ssr: false,
+  loading: () => (
+    <div className="border-b border-gray-200 bg-white px-3 py-2 text-xs text-gray-400">
+      Memuat toolbar ekspor...
+    </div>
+  ),
+});
 
 // ─── Inner app (needs context) ────────────────────────────────────────────────
 function AppInner() {
