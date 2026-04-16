@@ -29,11 +29,9 @@ function AppInner() {
                 ? { background: "#8b5cf6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
                 : theme.id === "notion"
                   ? { background: "#191919", color: "#fff", border: "1px solid #191919", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
-                  : theme.id === "glassmorphism"
-                    ? { background: "rgba(255,255,255,0.18)", color: "#fff", border: "1px solid rgba(255,255,255,0.28)", padding: "5px 14px", fontSize: "12px", fontWeight: 700, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 6, backdropFilter: "blur(10px)" }
-                    : theme.id === "startupPitchDeck"
-                      ? { background: "#d946ef", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 8, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
-                      : { background: "#3b82f6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 };
+                  : theme.id === "startupPitchDeck"
+                    ? { background: "#d946ef", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 8, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+                    : { background: "#3b82f6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 };
 
   const headerShadow =
     theme.id === "hijau"
@@ -47,12 +45,10 @@ function AppInner() {
             : theme.id === "paper"
               ? "0 1px 8px rgba(91,70,49,0.1)"
               : theme.id === "playfulEducation"
-                ? "0 10px 24px rgba(124,58,237,0.16)"
-                : theme.id === "glassmorphism"
-                  ? "0 8px 28px rgba(15,23,42,0.22)"
-                  : theme.id === "startupPitchDeck"
-                    ? "0 12px 30px rgba(217,70,239,0.18)"
-                    : "0 1px 4px rgba(0,0,0,0.06)";
+              ? "0 10px 24px rgba(124,58,237,0.16)"
+                : theme.id === "startupPitchDeck"
+                  ? "0 12px 30px rgba(217,70,239,0.18)"
+                  : "0 1px 4px rgba(0,0,0,0.06)";
 
   const badgeStyle: React.CSSProperties =
     theme.id === "hijau"
@@ -66,12 +62,10 @@ function AppInner() {
             : theme.id === "paper"
               ? { background: "#d1b08a", color: "#5b4631", borderRadius: 6, border: "1px solid #d1b08a" }
               : theme.id === "playfulEducation"
-                ? { background: "#8b5cf6", color: "#fff", borderRadius: 10, border: "none" }
+              ? { background: "#8b5cf6", color: "#fff", borderRadius: 10, border: "none" }
                 : theme.id === "notion"
                   ? { background: "#191919", color: "#fff", borderRadius: 4, border: "none" }
-                  : theme.id === "glassmorphism"
-                    ? { background: "rgba(255,255,255,0.18)", color: "#fff", borderRadius: 10, border: "1px solid rgba(255,255,255,0.28)" }
-                    : { background: "#d946ef", color: "#fff", borderRadius: 8, border: "none" };
+                  : { background: "#d946ef", color: "#fff", borderRadius: 8, border: "none" };
 
   const footerStyle: React.CSSProperties =
     theme.id === "hijau"
@@ -85,12 +79,10 @@ function AppInner() {
             : theme.id === "paper"
               ? { background: "#f7f1e3", color: "#8b7355", borderColor: "#d9c8ad", fontFamily: "Georgia, serif" }
               : theme.id === "playfulEducation"
-                ? { background: "#ffffff", color: "#7c3aed", borderColor: "#ddd6fe", fontFamily: "inherit" }
+              ? { background: "#ffffff", color: "#7c3aed", borderColor: "#ddd6fe", fontFamily: "inherit" }
                 : theme.id === "notion"
                   ? { background: "#fbfbfa", color: "#787774", borderColor: "#eceae5", fontFamily: "inherit" }
-                  : theme.id === "glassmorphism"
-                    ? { background: "rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.72)", borderColor: "rgba(255,255,255,0.12)", fontFamily: "inherit", backdropFilter: "blur(12px)" }
-                    : { background: "#111827", color: "#c4b5fd", borderColor: "#1f2937", fontFamily: "inherit" };
+                  : { background: "#111827", color: "#c4b5fd", borderColor: "#1f2937", fontFamily: "inherit" };
 
   return (
     <div

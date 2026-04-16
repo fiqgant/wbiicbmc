@@ -23,8 +23,6 @@ export default function ExportButtons() {
       ? 'border-violet-100 bg-white'
       : theme.id === 'notion'
       ? 'border-[#eceae5] bg-[#fbfbfa]'
-      : theme.id === 'glassmorphism'
-      ? 'border-white/10 bg-white/10 backdrop-blur-xl'
       : theme.id === 'startupPitchDeck'
       ? 'border-slate-800 bg-slate-950'
       : 'border-gray-200 bg-white';
@@ -44,8 +42,6 @@ export default function ExportButtons() {
       ? 'text-violet-600 font-bold'
       : theme.id === 'notion'
       ? 'text-[#787774]'
-      : theme.id === 'glassmorphism'
-      ? 'text-white/75 font-semibold'
       : theme.id === 'startupPitchDeck'
       ? 'text-fuchsia-300 font-bold'
       : 'text-gray-400';

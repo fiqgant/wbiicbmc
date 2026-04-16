@@ -440,61 +440,6 @@ const notion: ThemeConfig = {
   dividerColor: '#eceae5',
 };
 
-const glassmorphism: ThemeConfig = {
-  id: 'glassmorphism',
-  name: 'Glassmorphism',
-  pageBg: 'bg-gradient-to-br from-slate-900 via-indigo-950 to-sky-950',
-  headerBg: 'bg-white/10 backdrop-blur-xl border-b border-white/15',
-  headerTitle: 'text-white font-bold text-lg tracking-tight',
-  headerSubtitle: 'text-sky-100/70 text-xs',
-  sidebarBg: 'bg-white/10 backdrop-blur-xl',
-  sidebarBorder: 'border-r border-white/10',
-  formLabel: 'text-sm font-semibold text-white',
-  formDescription: 'text-xs text-sky-100/70 mt-0.5 mb-2',
-  formInput:
-    'w-full border border-white/15 rounded-xl px-3 py-2 text-sm text-white placeholder-white/45 focus:outline-none focus:ring-2 focus:ring-cyan-300 bg-white/10 backdrop-blur-md',
-  formAddBtn:
-    'bg-cyan-400/90 hover:bg-cyan-300 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1',
-  formRemoveBtn: 'text-white/40 hover:text-red-300 transition-colors ml-1 flex-shrink-0',
-  formSectionBg: 'bg-white/8 backdrop-blur-lg hover:bg-white/12 transition-colors',
-  formSectionBorder: 'border border-white/12 rounded-2xl',
-  formSectionTitle: 'text-sm font-semibold text-white',
-  formItemChip: 'flex items-center gap-1 bg-white/10 border border-white/10 rounded-xl px-2 py-1 text-xs text-white group',
-  formItemText: 'text-xs text-white flex-1',
-  canvasOuterBg: 'bg-transparent',
-  canvasWrapperBg: 'bg-white/10',
-  canvasWrapperBorder: 'border border-white/15',
-  canvasWrapperShadow: 'shadow-[0_18px_60px_rgba(15,23,42,0.45)]',
-  canvasTitle: 'text-sky-100/70 font-medium text-xs uppercase tracking-widest',
-  blockBorder: 'rgba(255,255,255,0.18)',
-  blockTitleBg: 'rgba(255,255,255,0.14)',
-  blockTitleText: '#f8fafc',
-  blockTitleExtra: 'font-semibold text-[10px] uppercase tracking-widest',
-  blockContentBg: 'rgba(255,255,255,0.08)',
-  blockContentText: '#f8fafc',
-  blockItemColor: '#f8fafc',
-  blockBullet: '#67e8f9',
-  blockShadow: '0 10px 30px rgba(15,23,42,0.18)',
-  blockRadius: '18px',
-  blockBg: {
-    keyPartnerships: 'rgba(59,130,246,0.16)',
-    keyActivities: 'rgba(16,185,129,0.16)',
-    keyResources: 'rgba(168,85,247,0.16)',
-    valuePropositions: 'rgba(34,211,238,0.16)',
-    customerRelationships: 'rgba(236,72,153,0.16)',
-    channels: 'rgba(249,115,22,0.16)',
-    customerSegments: 'rgba(99,102,241,0.18)',
-    costStructure: 'rgba(244,63,94,0.16)',
-    revenueStreams: 'rgba(16,185,129,0.18)',
-  },
-  btnPng: 'bg-emerald-400/90 hover:bg-emerald-300 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5',
-  btnPdf: 'bg-cyan-400/90 hover:bg-cyan-300 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5',
-  btnSave: 'bg-amber-300/90 hover:bg-amber-200 text-slate-950 text-xs font-bold px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5',
-  btnLoad: 'bg-white/10 hover:bg-white/15 text-white border border-white/15 text-xs font-bold px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5',
-  fontClass: 'font-sans',
-  dividerColor: 'rgba(255,255,255,0.12)',
-};
-
 const startupPitchDeck: ThemeConfig = {
   id: 'startupPitchDeck',
   name: 'Startup Pitch Deck',
@@ -559,7 +504,6 @@ export const themes: Record<ThemeId, ThemeConfig> = {
   paper,
   playfulEducation,
   notion,
-  glassmorphism,
   startupPitchDeck,
 };
 
@@ -572,6 +516,5 @@ export const themeOrder: ThemeId[] = [
   'paper',
   'playfulEducation',
   'notion',
-  'glassmorphism',
   'startupPitchDeck',
 ];

@@ -1,6 +1,6 @@
 'use client';
 
-import { Leaf, Square, Zap, Building2, Compass, FileText, GraduationCap, BookOpen, Gem, BarChart3 } from 'lucide-react';
+import { Leaf, Square, Zap, Building2, Compass, FileText, GraduationCap, BookOpen, BarChart3 } from 'lucide-react';
 import { useBMC } from '@/context/BMCContext';
 import { themes, themeOrder } from '@/lib/themes';
 import { ThemeId } from '@/lib/types';
@@ -14,7 +14,6 @@ const themeIcons: Record<ThemeId, React.ReactNode> = {
   paper:        <FileText    size={11} strokeWidth={2.5} />,
   playfulEducation: <GraduationCap size={11} strokeWidth={2.5} />,
   notion:       <BookOpen    size={11} strokeWidth={2.5} />,
-  glassmorphism:<Gem         size={11} strokeWidth={2.5} />,
   startupPitchDeck: <BarChart3 size={11} strokeWidth={2.5} />,
 };
 
@@ -52,10 +51,6 @@ export default function ThemeSwitcher() {
         return sel
           ? { background: '#191919', color: '#fff', border: '1px solid #191919' }
           : { background: 'transparent', color: '#787774', border: '1px solid #d6d3d1' };
-      case 'glassmorphism':
-        return sel
-          ? { background: 'rgba(255,255,255,0.22)', color: '#fff', border: '1px solid rgba(255,255,255,0.28)' }
-          : { background: 'transparent', color: 'rgba(255,255,255,0.75)', border: '1px solid rgba(255,255,255,0.18)' };
       case 'startupPitchDeck':
         return sel
           ? { background: '#d946ef', color: '#fff', border: '1px solid #d946ef' }
@@ -82,8 +77,6 @@ export default function ThemeSwitcher() {
       ? '#ede9fe'
       : themeId === 'notion'
       ? '#787774'
-      : themeId === 'glassmorphism'
-      ? 'rgba(255,255,255,0.78)'
       : '#c4b5fd';
 
   const isNeo = themeId === 'neobrutalism';

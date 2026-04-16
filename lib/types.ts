@@ -26,7 +26,6 @@ export type ThemeId =
   | 'paper'
   | 'playfulEducation'
   | 'notion'
-  | 'glassmorphism'
   | 'startupPitchDeck';
 
 export interface BlockMeta {
