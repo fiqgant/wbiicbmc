@@ -339,17 +339,11 @@ export default function BMCForm() {
         <div className="mt-3 flex items-center justify-between gap-3">
           <div className="min-w-0">
             <label
-              className="block text-[10px] font-bold uppercase tracking-widest mb-1"
+              className="block text-[10px] font-bold uppercase tracking-widest"
               style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#94a3b8' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#9b9995' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
             >
               Logo Usaha
             </label>
-            <p
-              className="text-[11px] leading-4"
-              style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
-            >
-              Default: favicon WBI
-            </p>
           </div>
           <div className="flex items-center gap-2 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -386,14 +380,14 @@ export default function BMCForm() {
               className="text-[11px] px-2 py-1 transition-colors whitespace-nowrap"
               style={{
                 border: `1px solid ${isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#38bdf8' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#ddd6fe' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
-                color: isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#e9d5ff' : '#6b7280',
-                background: 'transparent',
+                color: isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#e9d5ff' : '#6b7280',
+                background: isNeo ? '#000' : 'transparent',
                 borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
                 fontFamily: isNeo ? 'monospace' : 'inherit',
                 fontWeight: isNeo ? 900 : 500,
               }}
             >
-              Pakai Favicon Default
+              Pakai Logo WBI
             </button>
           </div>
         </div>

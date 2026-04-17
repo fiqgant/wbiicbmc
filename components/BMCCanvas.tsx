@@ -420,7 +420,7 @@ export default function BMCCanvas() {
               src={logoDataUrl || DEFAULT_BUSINESS_LOGO_SRC}
               alt="Logo usaha"
               crossOrigin="anonymous"
-              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+              style={{ width: '100%', height: '100%', objectFit: 'contain', padding: 6 }}
             />
           </div>
           {/* WBI Logos — pojok kanan atas canvas dengan background putih */}
