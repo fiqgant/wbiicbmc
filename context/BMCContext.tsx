@@ -21,6 +21,8 @@ import {
   saveCompanyNameToStorage,
   loadTeamNameFromStorage,
   saveTeamNameToStorage,
+  loadLogoFromStorage,
+  saveLogoToStorage,
 } from '@/lib/storage';
 
 interface BMCContextValue {
@@ -41,6 +43,8 @@ interface BMCContextValue {
   setCompanyName: (name: string) => void;
   teamName: string;
   setTeamName: (name: string) => void;
+  logoDataUrl: string;
+  setLogoDataUrl: (logoDataUrl: string) => void;
 }
 
 const BMCContext = createContext<BMCContextValue | null>(null);
@@ -52,6 +56,7 @@ export function BMCProvider({ children }: { children: ReactNode }) {
   const [hydrated, setHydrated] = useState(false);
   const [companyName, setCompanyNameState] = useState('');
   const [teamName, setTeamNameState] = useState('');
+  const [logoDataUrl, setLogoDataUrlState] = useState('');
   const canvasRef = useRef<HTMLDivElement>(null);
 
   // Load persisted state after mount
@@ -66,6 +71,8 @@ export function BMCProvider({ children }: { children: ReactNode }) {
     if (storedName) setCompanyNameState(storedName);
     const storedTeamName = loadTeamNameFromStorage();
     if (storedTeamName) setTeamNameState(storedTeamName);
+    const storedLogo = loadLogoFromStorage();
+    if (storedLogo) setLogoDataUrlState(storedLogo);
     setHydrated(true);
   }, []);
 
@@ -112,9 +119,11 @@ export function BMCProvider({ children }: { children: ReactNode }) {
     setData(workspace.data);
     setCompanyNameState(workspace.companyName);
     setTeamNameState(workspace.teamName);
+    setLogoDataUrlState(workspace.logoDataUrl ?? '');
     persistData(workspace.data);
     saveCompanyNameToStorage(workspace.companyName);
     saveTeamNameToStorage(workspace.teamName);
+    saveLogoToStorage(workspace.logoDataUrl ?? '');
   }, [persistData]);
 
   const resetData = useCallback(() => {
@@ -135,6 +144,11 @@ export function BMCProvider({ children }: { children: ReactNode }) {
   const setTeamName = useCallback((name: string) => {
     setTeamNameState(name);
     saveTeamNameToStorage(name);
+  }, []);
+
+  const setLogoDataUrl = useCallback((nextLogoDataUrl: string) => {
+    setLogoDataUrlState(nextLogoDataUrl);
+    saveLogoToStorage(nextLogoDataUrl);
   }, []);
 
   const theme = themes[themeId];
@@ -159,6 +173,8 @@ export function BMCProvider({ children }: { children: ReactNode }) {
         setCompanyName,
         teamName,
         setTeamName,
+        logoDataUrl,
+        setLogoDataUrl,
       }}
     >
       {children}

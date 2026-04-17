@@ -1,9 +1,10 @@
 'use client';
 
-import { useState, KeyboardEvent, useRef } from 'react';
+import { useState, KeyboardEvent, useRef, ChangeEvent } from 'react';
 import { X, Plus, ChevronDown, ChevronUp, ClipboardList, FolderOpen, CheckSquare } from 'lucide-react';
 import { useBMC } from '@/context/BMCContext';
 import { blockMeta, getRandomSampleBMCWorkspace, sampleBMCWorkspaces } from '@/lib/defaultData';
+import { DEFAULT_BUSINESS_LOGO_SRC } from '@/lib/branding';
 import { BMCBlockKey } from '@/lib/types';
 import { blockGuides } from '@/lib/guide';
 import BlockIcon from '@/components/icons/BlockIcon';
@@ -240,8 +241,9 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
 }
 
 export default function BMCForm() {
-  const { theme, loadWorkspace, resetData, companyName, setCompanyName, teamName, setTeamName } = useBMC();
+  const { theme, loadWorkspace, resetData, companyName, setCompanyName, teamName, setTeamName, logoDataUrl, setLogoDataUrl } = useBMC();
   const [lastLoadedSampleId, setLastLoadedSampleId] = useState<string | null>(null);
+  const logoInputRef = useRef<HTMLInputElement>(null);
 
   const isHijau = theme.id === 'hijau';
   const isNeo   = theme.id === 'neobrutalism';
@@ -252,6 +254,37 @@ export default function BMCForm() {
     'text-[10px] font-bold uppercase tracking-widest mb-2 px-1 flex items-center gap-1.5',
     isHijau ? 'text-[#50918B]' : isNeo ? 'text-black font-mono' : isCorp ? 'text-slate-400' : isNotion ? 'text-[#9b9995]' : 'text-gray-400',
   ].join(' ');
+
+  const handleLogoChange = (e: ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    if (!file.type.startsWith('image/')) {
+      alert('File logo harus berupa gambar.');
+      e.target.value = '';
+      return;
+    }
+
+    if (file.size > 2_500_000) {
+      alert('Ukuran logo maksimal 2.5MB.');
+      e.target.value = '';
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const result = reader.result;
+      if (typeof result === 'string') {
+        setLogoDataUrl(result);
+      }
+      e.target.value = '';
+    };
+    reader.onerror = () => {
+      alert('Logo gagal dibaca. Coba file lain.');
+      e.target.value = '';
+    };
+    reader.readAsDataURL(file);
+  };
 
   return (
     <div className={`flex h-full min-h-0 flex-col ${theme.fontClass}`}>
@@ -303,6 +336,71 @@ export default function BMCForm() {
             fontFamily: isNeo ? 'monospace' : 'inherit',
           }}
         />
+        <label
+          className="block text-[10px] font-bold uppercase tracking-widest mt-3 mb-1.5"
+          style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#94a3b8' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#9b9995' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
+        >
+          Logo Usaha
+        </label>
+        <div className="flex items-center gap-3">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={logoDataUrl || DEFAULT_BUSINESS_LOGO_SRC}
+            alt="Preview logo usaha"
+            crossOrigin="anonymous"
+            className="h-14 w-14 rounded-full object-cover"
+            style={{
+              border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
+              background: '#fff',
+              padding: 2,
+            }}
+          />
+          <div className="flex flex-wrap gap-2">
+            <button
+              type="button"
+              onClick={() => logoInputRef.current?.click()}
+              className="text-xs px-2.5 py-1.5 transition-colors"
+              style={{
+                border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#e5e7eb'}`,
+                color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#475569' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#5b4631' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#37352f' : theme.id === 'startupPitchDeck' ? '#fff' : '#6b7280',
+                background: theme.id === 'startupPitchDeck' ? '#d946ef' : '#ffffff',
+                borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
+                fontFamily: isNeo ? 'monospace' : 'inherit',
+                fontWeight: isNeo ? 900 : 500,
+              }}
+            >
+              Upload Logo
+            </button>
+            <button
+              type="button"
+              onClick={() => setLogoDataUrl('')}
+              className="text-xs px-2.5 py-1.5 transition-colors"
+              style={{
+                border: `1px solid ${isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#38bdf8' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#ddd6fe' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
+                color: isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#e9d5ff' : '#6b7280',
+                background: 'transparent',
+                borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
+                fontFamily: isNeo ? 'monospace' : 'inherit',
+                fontWeight: isNeo ? 900 : 500,
+              }}
+            >
+              Pakai Favicon Default
+            </button>
+          </div>
+        </div>
+        <input
+          ref={logoInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleLogoChange}
+        />
+        <p
+          className="mt-2 text-[11px] leading-5"
+          style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
+        >
+          Jika belum upload logo, canvas akan otomatis memakai favicon WBI sebagai logo default.
+        </p>
       </div>
 
       {/* ── Toolbar ── */}

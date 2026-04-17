@@ -5,6 +5,7 @@ const STORAGE_KEY = 'bmc_data_v1';
 const THEME_KEY = 'bmc_theme_v1';
 const COMPANY_KEY = 'bmc_company_v1';
 const TEAM_KEY = 'bmc_team_v1';
+const LOGO_KEY = 'bmc_logo_v1';
 
 export function loadFromStorage(): BMCData {
   try {
@@ -74,6 +75,22 @@ export function saveTeamNameToStorage(name: string): void {
   }
 }
 
+export function loadLogoFromStorage(): string {
+  try {
+    return localStorage.getItem(LOGO_KEY) ?? '';
+  } catch {
+    return '';
+  }
+}
+
+export function saveLogoToStorage(logoDataUrl: string): void {
+  try {
+    localStorage.setItem(LOGO_KEY, logoDataUrl);
+  } catch {
+    // Ignore
+  }
+}
+
 export function exportAsJSON(workspace: BMCWorkspace, filename = 'bmc-canvas.json'): void {
   const blob = new Blob([JSON.stringify(workspace, null, 2)], { type: 'application/json' });
   const url = URL.createObjectURL(blob);
@@ -97,6 +114,10 @@ function normalizeWorkspacePayload(parsed: unknown): BMCWorkspace {
     teamName:
       'teamName' in (maybeWorkspace ?? {}) && typeof (maybeWorkspace as Partial<BMCWorkspace>).teamName === 'string'
         ? (maybeWorkspace as Partial<BMCWorkspace>).teamName ?? ''
+        : '',
+    logoDataUrl:
+      'logoDataUrl' in (maybeWorkspace ?? {}) && typeof (maybeWorkspace as Partial<BMCWorkspace>).logoDataUrl === 'string'
+        ? (maybeWorkspace as Partial<BMCWorkspace>).logoDataUrl ?? ''
         : '',
   };
 }

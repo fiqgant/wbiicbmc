@@ -5,7 +5,7 @@ import { useBMC } from '@/context/BMCContext';
 import { exportAsJSON, parseJSONFile } from '@/lib/storage';
 
 export default function ExportButtons() {
-  const { theme, canvasRef, data, companyName, teamName, loadWorkspace } = useBMC();
+  const { theme, canvasRef, data, companyName, teamName, logoDataUrl, loadWorkspace } = useBMC();
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const toolbarClass =
@@ -123,7 +123,7 @@ export default function ExportButtons() {
   };
 
   const handleSaveJSON = () => {
-    exportAsJSON({ data, companyName, teamName });
+    exportAsJSON({ data, companyName, teamName, logoDataUrl });
   };
 
   const handleLoadJSON = (e: React.ChangeEvent<HTMLInputElement>) => {

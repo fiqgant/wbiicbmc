@@ -15,6 +15,7 @@ export interface BMCWorkspace {
   data: BMCData;
   companyName: string;
   teamName: string;
+  logoDataUrl?: string;
 }
 
 export type ThemeId =

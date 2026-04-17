@@ -1,6 +1,7 @@
 'use client';
 
 import { useBMC } from '@/context/BMCContext';
+import { DEFAULT_BUSINESS_LOGO_SRC } from '@/lib/branding';
 import { blockMeta } from '@/lib/defaultData';
 import { BMCBlockKey, ThemeConfig } from '@/lib/types';
 import BlockIcon from '@/components/icons/BlockIcon';
@@ -254,7 +255,7 @@ function CanvasLegend({ theme }: { theme: ThemeConfig }) {
 
 // ─── Main BMC Canvas ──────────────────────────────────────────────────────────
 export default function BMCCanvas() {
-  const { data, theme, canvasRef, activeFormBlock, companyName } = useBMC();
+  const { data, theme, canvasRef, activeFormBlock, companyName, logoDataUrl } = useBMC();
 
   const allKeys = Object.keys(BLOCK_GRID) as BMCBlockKey[];
 
@@ -293,11 +294,10 @@ export default function BMCCanvas() {
         {/* Canvas header */}
         <div
           style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
+            display: 'grid',
+            gridTemplateColumns: '1fr auto 1fr',
+            alignItems: 'center',
             gap: '12px',
-            flexWrap: 'wrap',
             padding: '8px 14px',
               background:
                 theme.id === 'hijau'
@@ -321,7 +321,7 @@ export default function BMCCanvas() {
             flexShrink: 0,
           }}
         >
-          <div>
+          <div style={{ minWidth: 0 }}>
             <div
               style={{
                 fontSize: '13px',
@@ -400,6 +400,29 @@ export default function BMCCanvas() {
               {companyName || 'nama usaha belum diisi…'}
             </div>
           </div>
+          <div
+            style={{
+              justifySelf: 'center',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              width: 60,
+              height: 60,
+              borderRadius: '50%',
+              background: '#ffffff',
+              border: `2px solid ${theme.id === 'hijau' ? '#50918B' : theme.id === 'neobrutalism' ? '#fde047' : theme.id === 'corporate' ? '#cbd5e1' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#ddd6fe' : theme.id === 'notion' ? '#efeeeb' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
+              overflow: 'hidden',
+              boxShadow: theme.id === 'notion' ? '0 4px 14px rgba(15,23,42,0.06)' : 'none',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={logoDataUrl || DEFAULT_BUSINESS_LOGO_SRC}
+              alt="Logo usaha"
+              crossOrigin="anonymous"
+              style={{ width: '100%', height: '100%', objectFit: 'cover' }}
+            />
+          </div>
           {/* WBI Logos — pojok kanan atas canvas dengan background putih */}
           <div
             style={{
@@ -408,6 +431,7 @@ export default function BMCCanvas() {
               alignItems: 'center',
               flexWrap: 'wrap',
               gap: 10,
+              justifySelf: 'end',
               background: '#ffffff',
               borderRadius: theme.id === 'notion' ? 8 : 4,
               padding: '5px 10px',
