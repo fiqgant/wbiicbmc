@@ -336,30 +336,39 @@ export default function BMCForm() {
             fontFamily: isNeo ? 'monospace' : 'inherit',
           }}
         />
-        <label
-          className="block text-[10px] font-bold uppercase tracking-widest mt-3 mb-1.5"
-          style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#94a3b8' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#9b9995' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
-        >
-          Logo Usaha
-        </label>
-        <div className="flex items-center gap-3">
+        <div className="mt-3 flex items-center justify-between gap-3">
+          <div className="min-w-0">
+            <label
+              className="block text-[10px] font-bold uppercase tracking-widest mb-1"
+              style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#94a3b8' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#9b9995' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
+            >
+              Logo Usaha
+            </label>
+            <p
+              className="text-[11px] leading-4"
+              style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
+            >
+              Default: favicon WBI
+            </p>
+          </div>
+          <div className="flex items-center gap-2 shrink-0">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={logoDataUrl || DEFAULT_BUSINESS_LOGO_SRC}
             alt="Preview logo usaha"
             crossOrigin="anonymous"
-            className="h-14 w-14 rounded-full object-cover"
+            className="h-10 w-10 rounded-full object-cover"
             style={{
               border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
               background: '#fff',
               padding: 2,
             }}
           />
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-1.5 sm:flex-row">
             <button
               type="button"
               onClick={() => logoInputRef.current?.click()}
-              className="text-xs px-2.5 py-1.5 transition-colors"
+              className="text-[11px] px-2 py-1 transition-colors whitespace-nowrap"
               style={{
                 border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#e5e7eb'}`,
                 color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#475569' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#5b4631' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#37352f' : theme.id === 'startupPitchDeck' ? '#fff' : '#6b7280',
@@ -374,7 +383,7 @@ export default function BMCForm() {
             <button
               type="button"
               onClick={() => setLogoDataUrl('')}
-              className="text-xs px-2.5 py-1.5 transition-colors"
+              className="text-[11px] px-2 py-1 transition-colors whitespace-nowrap"
               style={{
                 border: `1px solid ${isHijau ? '#c5ddd9' : isNeo ? '#000' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#38bdf8' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#ddd6fe' : theme.id === 'notion' ? '#e9e7e3' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
                 color: isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#e9d5ff' : '#6b7280',
@@ -388,6 +397,7 @@ export default function BMCForm() {
             </button>
           </div>
         </div>
+        </div>
         <input
           ref={logoInputRef}
           type="file"
@@ -395,12 +405,6 @@ export default function BMCForm() {
           className="hidden"
           onChange={handleLogoChange}
         />
-        <p
-          className="mt-2 text-[11px] leading-5"
-          style={{ color: isHijau ? '#7fba9a' : isNeo ? '#fde047' : isCorp ? '#64748b' : theme.id === 'blueprint' ? '#bae6fd' : theme.id === 'paper' ? '#8b7355' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#787774' : theme.id === 'startupPitchDeck' ? '#f0abfc' : '#9ca3af' }}
-        >
-          Jika belum upload logo, canvas akan otomatis memakai favicon WBI sebagai logo default.
-        </p>
       </div>
 
       {/* ── Toolbar ── */}
