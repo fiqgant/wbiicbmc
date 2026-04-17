@@ -49,7 +49,7 @@ function CanvasBlock({
       : theme.id === 'playfulEducation'
       ? '#8b5cf6'
       : theme.id === 'notion'
-      ? '#191919'
+      ? '#9b9995'
       : theme.id === 'startupPitchDeck'
       ? '#d946ef'
       : '#64748b';
@@ -77,7 +77,7 @@ function CanvasBlock({
         overflow: 'hidden',
         borderRadius: theme.blockRadius,
         background: theme.blockBg[blockKey],
-        outline: isHighlighted ? `2px solid ${theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#b08968' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#191919' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#3b82f6'}` : 'none',
+        outline: isHighlighted ? `2px solid ${theme.id === 'neobrutalism' ? '#facc15' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#b08968' : theme.id === 'playfulEducation' ? '#8b5cf6' : theme.id === 'notion' ? '#2383e2' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#3b82f6'}` : 'none',
         outlineOffset: '-2px',
         transition: 'outline 0.15s',
         ...borderStyle,
@@ -202,7 +202,7 @@ function CanvasLegend({ theme }: { theme: ThemeConfig }) {
         justifyContent: 'space-between',
         padding: '5px 12px',
         borderBottom: `1px solid ${theme.dividerColor}`,
-        background: theme.id === 'hijau' ? '#1a4a2e' : theme.id === 'neobrutalism' ? '#000' : theme.id === 'corporate' ? '#1e3a5f' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fdf6ea' : theme.id === 'playfulEducation' ? '#faf5ff' : theme.id === 'notion' ? '#f7f6f3' : theme.id === 'startupPitchDeck' ? '#111827' : '#f9fafb',
+        background: theme.id === 'hijau' ? '#1a4a2e' : theme.id === 'neobrutalism' ? '#000' : theme.id === 'corporate' ? '#1e3a5f' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fdf6ea' : theme.id === 'playfulEducation' ? '#faf5ff' : theme.id === 'notion' ? '#ffffff' : theme.id === 'startupPitchDeck' ? '#111827' : '#f9fafb',
         flexShrink: 0,
       }}
     >
@@ -312,8 +312,8 @@ export default function BMCCanvas() {
                   ? '#f7f1e3'
                 : theme.id === 'playfulEducation'
                   ? '#8b5cf6'
-                : theme.id === 'notion'
-                  ? '#f7f6f3'
+                 : theme.id === 'notion'
+                   ? '#ffffff'
                 : theme.id === 'startupPitchDeck'
                   ? '#111827'
                 : '#ffffff',
@@ -342,7 +342,7 @@ export default function BMCCanvas() {
                     : theme.id === 'playfulEducation'
                     ? '#ffffff'
                     : theme.id === 'notion'
-                    ? '#191919'
+                    ? '#37352f'
                     : theme.id === 'startupPitchDeck'
                     ? '#ffffff'
                     : '#111827',
@@ -369,7 +369,7 @@ export default function BMCCanvas() {
                     : theme.id === 'playfulEducation'
                     ? '#ddd6fe'
                     : theme.id === 'notion'
-                    ? '#52525b'
+                    ? '#787774'
                     : theme.id === 'startupPitchDeck'
                     ? '#f0abfc'
                     : '#374151'
@@ -386,7 +386,7 @@ export default function BMCCanvas() {
                   : theme.id === 'playfulEducation'
                   ? '#c4b5fd'
                   : theme.id === 'notion'
-                  ? '#d1d5db'
+                  ? '#9b9995'
                   : theme.id === 'startupPitchDeck'
                   ? '#a78bfa'
                   : '#d1d5db',
@@ -409,9 +409,9 @@ export default function BMCCanvas() {
               flexWrap: 'wrap',
               gap: 10,
               background: '#ffffff',
-              borderRadius: 4,
+              borderRadius: theme.id === 'notion' ? 8 : 4,
               padding: '5px 10px',
-              border: '1px solid rgba(255,255,255,0.15)',
+              border: theme.id === 'notion' ? '1px solid #efeeeb' : '1px solid rgba(255,255,255,0.15)',
             }}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}

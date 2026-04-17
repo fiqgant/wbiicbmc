@@ -23,7 +23,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
     theme.id === 'blueprint' ? '#67e8f9' :
     theme.id === 'paper' ? '#8b6b4a' :
     theme.id === 'playfulEducation' ? '#8b5cf6' :
-    theme.id === 'notion' ? '#191919' :
+    theme.id === 'notion' ? '#2383e2' :
     theme.id === 'startupPitchDeck' ? '#d946ef' :
     '#3b82f6';
 
@@ -47,7 +47,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
         theme.id === 'blueprint'    ? 'ring-cyan-300'  :
         theme.id === 'paper'        ? 'ring-[#b08968]' :
         theme.id === 'playfulEducation' ? 'ring-violet-500' :
-        theme.id === 'notion'       ? 'ring-black' :
+        theme.id === 'notion'       ? 'ring-[#2383e2]' :
         theme.id === 'startupPitchDeck' ? 'ring-fuchsia-500' : 'ring-yellow-400',
       ].join(' ')}
       onClick={() => setActiveFormBlock(isActive ? null : blockKey)}
@@ -64,9 +64,9 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
               background: accentColor,
               color: theme.id === 'neobrutalism' ? '#fde047' : '#fff',
               fontSize: '10px',
-              fontWeight: 700,
+               fontWeight: theme.id === 'notion' ? 600 : 700,
               padding: '1px 7px',
-              borderRadius: theme.id === 'neobrutalism' ? 0 : 99,
+               borderRadius: theme.id === 'neobrutalism' ? 0 : theme.id === 'notion' ? 6 : 99,
               fontFamily: theme.id === 'neobrutalism' ? 'monospace' : 'inherit',
             }}
           >
@@ -142,10 +142,10 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
                 theme.id === 'blueprint' ? '#0ea5e9' :
                 theme.id === 'paper' ? '#d7c5a9' :
                 theme.id === 'playfulEducation' ? '#c4b5fd' :
-                theme.id === 'notion' ? '#e6e4e0' :
+                theme.id === 'notion' ? '#e9e7e3' :
                 theme.id === 'startupPitchDeck' ? '#f0abfc' : '#bfdbfe'
               }`,
-              borderRadius: theme.id === 'neobrutalism' ? 0 : 6,
+              borderRadius: theme.id === 'neobrutalism' ? 0 : theme.id === 'notion' ? 10 : 6,
             }}
           >
             {/* Steps header */}
@@ -166,7 +166,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
                   theme.id === 'blueprint' ? '#082f49' :
                   theme.id === 'paper' ? '#8b6b4a' :
                   theme.id === 'playfulEducation' ? '#8b5cf6' :
-                  theme.id === 'notion' ? '#191919' :
+                  theme.id === 'notion' ? '#f7f6f3' :
                   theme.id === 'startupPitchDeck' ? '#111827' : '#1e40af',
                 color:
                   theme.id === 'hijau' ? '#7fba9a' :
@@ -174,7 +174,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
                   theme.id === 'blueprint' ? '#bae6fd' :
                   theme.id === 'paper' ? '#fffaf0' :
                   theme.id === 'playfulEducation' ? '#ede9fe' :
-                  theme.id === 'notion' ? '#f8fafc' :
+                  theme.id === 'notion' ? '#6f6e69' :
                   theme.id === 'startupPitchDeck' ? '#f9a8d4' : '#bfdbfe',
                 fontFamily: theme.id === 'neobrutalism' ? 'monospace' : 'inherit',
               }}
@@ -182,7 +182,7 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
               <ClipboardList size={11} />
               Langkah Pengisian
             </div>
-            <div style={{ padding: '8px 10px', background: theme.id === 'hijau' ? '#f0faf5' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fffaf0' : theme.id === 'playfulEducation' ? '#faf5ff' : theme.id === 'notion' ? '#fbfbfa' : theme.id === 'startupPitchDeck' ? '#faf5ff' : '#eff6ff', display: 'flex', flexDirection: 'column', gap: 5 }}>
+            <div style={{ padding: '8px 10px', background: theme.id === 'hijau' ? '#f0faf5' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fffaf0' : theme.id === 'playfulEducation' ? '#faf5ff' : theme.id === 'notion' ? '#ffffff' : theme.id === 'startupPitchDeck' ? '#faf5ff' : '#eff6ff', display: 'flex', flexDirection: 'column', gap: 5 }}>
               {blockGuides[blockKey].steps.map((step, i) => (
                 <div key={i} style={{ display: 'flex', gap: 7, alignItems: 'flex-start' }}>
                   <span
@@ -214,19 +214,19 @@ function BlockInput({ blockKey }: { blockKey: BMCBlockKey }) {
                 fontWeight: 800,
                 textTransform: 'uppercase',
                 letterSpacing: '0.07em',
-                background: theme.id === 'hijau' ? '#6b4c1a' : theme.id === 'blueprint' ? '#0f172a' : theme.id === 'paper' ? '#b08968' : theme.id === 'playfulEducation' ? '#f59e0b' : theme.id === 'notion' ? '#8b5e34' : theme.id === 'startupPitchDeck' ? '#9a3412' : '#92400e',
-                color: theme.id === 'hijau' ? '#f5d08a' : theme.id === 'blueprint' ? '#fde68a' : theme.id === 'paper' ? '#fffaf0' : theme.id === 'playfulEducation' ? '#fff7ed' : theme.id === 'notion' ? '#fff7ed' : theme.id === 'startupPitchDeck' ? '#ffedd5' : '#fde68a',
+                background: theme.id === 'hijau' ? '#6b4c1a' : theme.id === 'blueprint' ? '#0f172a' : theme.id === 'paper' ? '#b08968' : theme.id === 'playfulEducation' ? '#f59e0b' : theme.id === 'notion' ? '#f7f6f3' : theme.id === 'startupPitchDeck' ? '#9a3412' : '#92400e',
+                color: theme.id === 'hijau' ? '#f5d08a' : theme.id === 'blueprint' ? '#fde68a' : theme.id === 'paper' ? '#fffaf0' : theme.id === 'playfulEducation' ? '#fff7ed' : theme.id === 'notion' ? '#6f6e69' : theme.id === 'startupPitchDeck' ? '#ffedd5' : '#fde68a',
                 fontFamily: theme.id === 'neobrutalism' ? 'monospace' : 'inherit',
               }}
             >
               <FolderOpen size={11} />
               Bukti yang Disiapkan
             </div>
-            <div style={{ padding: '8px 10px', background: '#fffbeb', display: 'flex', flexDirection: 'column', gap: 4 }}>
+            <div style={{ padding: '8px 10px', background: theme.id === 'notion' ? '#ffffff' : '#fffbeb', display: 'flex', flexDirection: 'column', gap: 4 }}>
               {blockGuides[blockKey].evidence.map((ev, i) => (
                 <div key={i} style={{ display: 'flex', gap: 7, alignItems: 'flex-start' }}>
-                  <CheckSquare size={12} strokeWidth={2} style={{ color: theme.id === 'hijau' ? '#AC7B2E' : theme.id === 'blueprint' ? '#fbbf24' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#d97706' : theme.id === 'notion' ? '#8b5e34' : theme.id === 'startupPitchDeck' ? '#fb923c' : '#d97706', flexShrink: 0, marginTop: 1 }} />
-                  <span style={{ fontSize: '11px', lineHeight: 1.5, color: theme.id === 'blueprint' ? '#7c2d12' : theme.id === 'paper' ? '#5b4631' : theme.id === 'playfulEducation' ? '#7c2d12' : theme.id === 'notion' ? '#78350f' : theme.id === 'startupPitchDeck' ? '#7c2d12' : '#78350f', fontFamily: theme.id === 'neobrutalism' ? 'monospace' : 'inherit' }}>
+                  <CheckSquare size={12} strokeWidth={2} style={{ color: theme.id === 'hijau' ? '#AC7B2E' : theme.id === 'blueprint' ? '#fbbf24' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#d97706' : theme.id === 'notion' ? '#9b9995' : theme.id === 'startupPitchDeck' ? '#fb923c' : '#d97706', flexShrink: 0, marginTop: 1 }} />
+                  <span style={{ fontSize: '11px', lineHeight: 1.5, color: theme.id === 'blueprint' ? '#7c2d12' : theme.id === 'paper' ? '#5b4631' : theme.id === 'playfulEducation' ? '#7c2d12' : theme.id === 'notion' ? '#5f5e5b' : theme.id === 'startupPitchDeck' ? '#7c2d12' : '#78350f', fontFamily: theme.id === 'neobrutalism' ? 'monospace' : 'inherit' }}>
                     {ev}
                   </span>
                 </div>
@@ -246,10 +246,11 @@ export default function BMCForm() {
   const isHijau = theme.id === 'hijau';
   const isNeo   = theme.id === 'neobrutalism';
   const isCorp  = theme.id === 'corporate';
+  const isNotion = theme.id === 'notion';
 
   const sectionLabelClass = [
     'text-[10px] font-bold uppercase tracking-widest mb-2 px-1 flex items-center gap-1.5',
-    isHijau ? 'text-[#50918B]' : isNeo ? 'text-black font-mono' : isCorp ? 'text-slate-400' : 'text-gray-400',
+    isHijau ? 'text-[#50918B]' : isNeo ? 'text-black font-mono' : isCorp ? 'text-slate-400' : isNotion ? 'text-[#9b9995]' : 'text-gray-400',
   ].join(' ');
 
   return (
@@ -278,7 +279,7 @@ export default function BMCForm() {
             background: isHijau ? '#1a4a2e' : isNeo ? '#1a1a1a' : isCorp ? '#1e293b' : theme.id === 'blueprint' ? '#0c4a6e' : theme.id === 'paper' ? '#fffdf8' : theme.id === 'playfulEducation' ? '#f8fafc' : theme.id === 'notion' ? '#ffffff' : theme.id === 'startupPitchDeck' ? '#1f2937' : '#f9fafb',
             border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#334155' : theme.id === 'blueprint' ? '#38bdf8' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#e6e4e0' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
             color: isHijau ? '#fff' : isNeo ? '#fde047' : isCorp ? '#f1f5f9' : theme.id === 'blueprint' ? '#e0f2fe' : theme.id === 'paper' ? '#5b4631' : theme.id === 'playfulEducation' ? '#111827' : theme.id === 'notion' ? '#111827' : theme.id === 'startupPitchDeck' ? '#f8fafc' : '#111827',
-            borderRadius: isNeo ? 0 : 4,
+            borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
             fontFamily: isNeo ? 'monospace' : 'inherit',
           }}
         />
@@ -298,7 +299,7 @@ export default function BMCForm() {
             background: isHijau ? '#1a4a2e' : isNeo ? '#1a1a1a' : isCorp ? '#1e293b' : theme.id === 'blueprint' ? '#0c4a6e' : theme.id === 'paper' ? '#fffdf8' : theme.id === 'playfulEducation' ? '#f8fafc' : theme.id === 'notion' ? '#ffffff' : theme.id === 'startupPitchDeck' ? '#1f2937' : '#f9fafb',
             border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#fde047' : isCorp ? '#334155' : theme.id === 'blueprint' ? '#38bdf8' : theme.id === 'paper' ? '#d7c5a9' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#e6e4e0' : theme.id === 'startupPitchDeck' ? '#374151' : '#e5e7eb'}`,
             color: isHijau ? '#fff' : isNeo ? '#fde047' : isCorp ? '#f1f5f9' : theme.id === 'blueprint' ? '#e0f2fe' : theme.id === 'paper' ? '#5b4631' : theme.id === 'playfulEducation' ? '#111827' : theme.id === 'notion' ? '#111827' : theme.id === 'startupPitchDeck' ? '#f8fafc' : '#111827',
-            borderRadius: isNeo ? 0 : 4,
+            borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
             fontFamily: isNeo ? 'monospace' : 'inherit',
           }}
         />
@@ -329,8 +330,8 @@ export default function BMCForm() {
             style={{
               border: `1px solid ${isHijau ? '#50918B' : isNeo ? '#000' : isCorp ? '#cbd5e1' : theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#c4b5fd' : theme.id === 'notion' ? '#d6d3d1' : theme.id === 'startupPitchDeck' ? '#d946ef' : '#e5e7eb'}`,
               color: isHijau ? '#133622' : isNeo ? '#000' : isCorp ? '#475569' : theme.id === 'blueprint' ? '#082f49' : theme.id === 'paper' ? '#fffaf0' : theme.id === 'playfulEducation' ? '#7c3aed' : theme.id === 'notion' ? '#37352f' : theme.id === 'startupPitchDeck' ? '#fff' : '#6b7280',
-              background: theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#ffffff' : theme.id === 'startupPitchDeck' ? '#d946ef' : 'transparent',
-              borderRadius: isNeo ? 0 : 4,
+              background: theme.id === 'blueprint' ? '#67e8f9' : theme.id === 'paper' ? '#8b6b4a' : theme.id === 'playfulEducation' ? '#ffffff' : theme.id === 'notion' ? '#ffffff' : theme.id === 'startupPitchDeck' ? '#d946ef' : 'transparent',
+              borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
               fontFamily: isNeo ? 'monospace' : 'inherit',
               fontWeight: isNeo ? 900 : 500,
             }}
@@ -344,7 +345,7 @@ export default function BMCForm() {
               border: '1px solid #fca5a5',
               color: '#dc2626',
               background: 'transparent',
-              borderRadius: isNeo ? 0 : 4,
+               borderRadius: isNeo ? 0 : isNotion ? 8 : 4,
               fontFamily: isNeo ? 'monospace' : 'inherit',
               fontWeight: isNeo ? 900 : 500,
             }}

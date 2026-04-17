@@ -37,7 +37,7 @@ function AppInner() {
               : theme.id === "playfulEducation"
                 ? { background: "#8b5cf6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 999, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
                 : theme.id === "notion"
-                  ? { background: "#191919", color: "#fff", border: "1px solid #191919", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
+                  ? { background: "#ffffff", color: "#37352f", border: "1px solid #e9e7e3", padding: "5px 14px", fontSize: "12px", fontWeight: 500, borderRadius: 8, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
                   : theme.id === "startupPitchDeck"
                     ? { background: "#d946ef", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 800, borderRadius: 8, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 }
                     : { background: "#3b82f6", color: "#fff", border: "none", padding: "5px 14px", fontSize: "12px", fontWeight: 600, borderRadius: 6, cursor: "pointer", display: "flex", alignItems: "center", gap: 6 };
@@ -55,6 +55,8 @@ function AppInner() {
               ? "0 1px 8px rgba(91,70,49,0.1)"
               : theme.id === "playfulEducation"
               ? "0 10px 24px rgba(124,58,237,0.16)"
+              : theme.id === "notion"
+                ? "none"
                 : theme.id === "startupPitchDeck"
                   ? "0 12px 30px rgba(217,70,239,0.18)"
                   : "0 1px 4px rgba(0,0,0,0.06)";
@@ -73,7 +75,7 @@ function AppInner() {
               : theme.id === "playfulEducation"
               ? { background: "#8b5cf6", color: "#fff", borderRadius: 10, border: "none" }
                 : theme.id === "notion"
-                  ? { background: "#191919", color: "#fff", borderRadius: 4, border: "none" }
+                  ? { background: "#ffffff", color: "#37352f", borderRadius: 8, border: "1px solid #e9e7e3" }
                   : { background: "#d946ef", color: "#fff", borderRadius: 8, border: "none" };
 
   const footerStyle: React.CSSProperties =
@@ -90,7 +92,7 @@ function AppInner() {
               : theme.id === "playfulEducation"
               ? { background: "#ffffff", color: "#7c3aed", borderColor: "#ddd6fe", fontFamily: "inherit" }
                 : theme.id === "notion"
-                  ? { background: "#fbfbfa", color: "#787774", borderColor: "#eceae5", fontFamily: "inherit" }
+                  ? { background: "#ffffff", color: "#9b9995", borderColor: "#efeeeb", fontFamily: "inherit" }
                   : { background: "#111827", color: "#c4b5fd", borderColor: "#1f2937", fontFamily: "inherit" };
 
   return (

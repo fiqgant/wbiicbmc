@@ -49,8 +49,8 @@ export default function ThemeSwitcher() {
           : { background: 'transparent', color: '#7c3aed', border: '1px solid #c4b5fd' };
       case 'notion':
         return sel
-          ? { background: '#191919', color: '#fff', border: '1px solid #191919' }
-          : { background: 'transparent', color: '#787774', border: '1px solid #d6d3d1' };
+          ? { background: '#2f3437', color: '#fff', border: '1px solid #2f3437' }
+          : { background: '#ffffff', color: '#787774', border: '1px solid #e9e7e3' };
       case 'startupPitchDeck':
         return sel
           ? { background: '#d946ef', color: '#fff', border: '1px solid #d946ef' }
@@ -99,8 +99,8 @@ export default function ThemeSwitcher() {
               padding: '4px 10px',
               fontSize: '11px',
               fontWeight: 700,
-              cursor: 'pointer',
-              borderRadius: isNeo ? 0 : 4,
+             cursor: 'pointer',
+              borderRadius: isNeo ? 0 : themeId === 'notion' ? 8 : 4,
               transition: 'all 0.15s',
               display: 'flex',
               alignItems: 'center',
