@@ -14,9 +14,9 @@ export const metadata: Metadata = {
   description:
     'Create, visualize, and export a professional Business Model Canvas with multiple themes.',
   icons: {
-    icon: 'https://wbi.ac.id/favicon.png',
-    shortcut: 'https://wbi.ac.id/favicon.png',
-    apple: 'https://wbi.ac.id/favicon.png',
+    icon: '/favicon.png',
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
 };
 
