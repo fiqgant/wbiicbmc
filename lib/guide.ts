@@ -37,16 +37,28 @@ export const fillOrderSteps: FillOrderStep[] = [
     desc: 'Rumuskan nilai yang benar-benar menjawab kebutuhan segmen tadi.',
   },
   {
-    title: 'Channels & Customer Relationships',
-    desc: 'Tentukan cara menjangkau pelanggan dan bagaimana menjaga hubungan dengan mereka.',
+    title: 'Customer Relationships',
+    desc: 'Tentukan bagaimana cara menjaga dan mempertahankan hubungan dengan pelanggan.',
+  },
+  {
+    title: 'Channels',
+    desc: 'Tentukan saluran untuk menjangkau pelanggan di setiap tahap: awareness, akuisisi, hingga dukungan.',
+  },
+  {
+    title: 'Key Activities',
+    desc: 'Daftar aktivitas inti yang harus dijalankan agar proposisi nilai bisa tersampaikan.',
+  },
+  {
+    title: 'Key Resources',
+    desc: 'Identifikasi sumber daya krusial: orang, teknologi, aset, atau modal.',
+  },
+  {
+    title: 'Key Partnerships',
+    desc: 'Tentukan mitra strategis yang membantu menjalankan aktivitas atau memperluas jangkauan.',
   },
   {
     title: 'Revenue Streams',
     desc: 'Validasi untuk nilai apa pelanggan bersedia membayar dan bagaimana uang masuk.',
-  },
-  {
-    title: 'Sisi Kiri Canvas',
-    desc: 'Baru lengkapi Key Resources, Key Activities, dan Key Partnerships untuk mendukung nilai tadi.',
   },
   {
     title: 'Cost Structure',
@@ -58,7 +70,7 @@ export const fillOrderSteps: FillOrderStep[] = [
 export const generalPrinciples: GeneralPrinciple[] = [
   {
     title: 'Mulai dari Sisi Kanan Canvas',
-    desc: 'Ikuti urutan Alexander Osterwalder: mulai dari Customer Segments, lanjut ke Value Propositions, lalu hubungan/channel pelanggan sebelum mengisi sisi kiri BMC.',
+    desc: 'Mulai dari Customer Segments → Value Propositions → Customer Relationships → Channels → Key Activities → Key Resources → Key Partnerships → Revenue Streams → Cost Structure.',
   },
   {
     title: 'Gunakan Bahasa yang Jelas dan Ringkas',
