@@ -2,33 +2,13 @@ import { BMCData, BMCWorkspace, BlockMeta } from './types';
 
 export const blockMeta: BlockMeta[] = [
   {
-    key: 'keyPartnerships',
-    title: 'Key Partnerships',
-    description: 'Who are our key partners and suppliers?',
+    key: 'customerSegments',
+    title: 'Customer Segments',
+    description: 'For whom are we creating value?',
     placeholders: [
-      'Strategic alliance with Tech Corp',
-      'Joint venture with Distributor',
-      'Supplier agreement for materials',
-    ],
-  },
-  {
-    key: 'keyActivities',
-    title: 'Key Activities',
-    description: 'What key activities does our value proposition require?',
-    placeholders: [
-      'Software development & maintenance',
-      'Customer acquisition campaigns',
-      'Quality assurance processes',
-    ],
-  },
-  {
-    key: 'keyResources',
-    title: 'Key Resources',
-    description: 'What key resources does our value proposition require?',
-    placeholders: [
-      'Proprietary technology & IP',
-      'Engineering and design team',
-      'Financial capital & brand equity',
+      'SMBs with 10–200 employees',
+      'Enterprise CTOs and tech leads',
+      'Early adopter tech enthusiasts',
     ],
   },
   {
@@ -62,23 +42,33 @@ export const blockMeta: BlockMeta[] = [
     ],
   },
   {
-    key: 'customerSegments',
-    title: 'Customer Segments',
-    description: 'For whom are we creating value?',
+    key: 'keyActivities',
+    title: 'Key Activities',
+    description: 'What key activities does our value proposition require?',
     placeholders: [
-      'SMBs with 10–200 employees',
-      'Enterprise CTOs and tech leads',
-      'Early adopter tech enthusiasts',
+      'Software development & maintenance',
+      'Customer acquisition campaigns',
+      'Quality assurance processes',
     ],
   },
   {
-    key: 'costStructure',
-    title: 'Cost Structure',
-    description: 'What are the most important costs in our business model?',
+    key: 'keyResources',
+    title: 'Key Resources',
+    description: 'What key resources does our value proposition require?',
     placeholders: [
-      'Infrastructure and cloud hosting',
-      'Salaries and personnel costs',
-      'Marketing & customer acquisition',
+      'Proprietary technology & IP',
+      'Engineering and design team',
+      'Financial capital & brand equity',
+    ],
+  },
+  {
+    key: 'keyPartnerships',
+    title: 'Key Partnerships',
+    description: 'Who are our key partners and suppliers?',
+    placeholders: [
+      'Strategic alliance with Tech Corp',
+      'Joint venture with Distributor',
+      'Supplier agreement for materials',
     ],
   },
   {
@@ -89,6 +79,16 @@ export const blockMeta: BlockMeta[] = [
       'Monthly subscription ($29–$299/mo)',
       'Transaction fees (2% per payment)',
       'Professional services & training',
+    ],
+  },
+  {
+    key: 'costStructure',
+    title: 'Cost Structure',
+    description: 'What are the most important costs in our business model?',
+    placeholders: [
+      'Infrastructure and cloud hosting',
+      'Salaries and personnel costs',
+      'Marketing & customer acquisition',
     ],
   },
 ];

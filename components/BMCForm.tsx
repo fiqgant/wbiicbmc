@@ -481,18 +481,16 @@ export default function BMCForm() {
         <BlockInput blockKey="valuePropositions" />
 
         <div className={`${sectionLabelClass} mt-4`}>Interaksi Pelanggan</div>
-        <BlockInput blockKey="channels" />
         <BlockInput blockKey="customerRelationships" />
-
-        <div className={`${sectionLabelClass} mt-4`}>Monetisasi</div>
-        <BlockInput blockKey="revenueStreams" />
+        <BlockInput blockKey="channels" />
 
         <div className={`${sectionLabelClass} mt-4`}>Infrastruktur</div>
-        <BlockInput blockKey="keyResources" />
         <BlockInput blockKey="keyActivities" />
+        <BlockInput blockKey="keyResources" />
         <BlockInput blockKey="keyPartnerships" />
 
         <div className={`${sectionLabelClass} mt-4`}>Keuangan</div>
+        <BlockInput blockKey="revenueStreams" />
         <BlockInput blockKey="costStructure" />
 
         <div className="h-6" />
