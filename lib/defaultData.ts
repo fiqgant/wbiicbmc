@@ -168,8 +168,8 @@ export const sampleBMCWorkspaces: SampleBMCWorkspace[] = [
       customerSegments: [
         'Mahasiswa kos semester 1-4 di sekitar kampus, usia 18-22 tahun, dengan uang makan bulanan terbatas',
         'Butuh makan siang bergizi tanpa harus masak, antre di kantin, atau keluar kos saat jadwal kuliah padat',
-        'Pain: kantin antri panjang, harga naik, pilihan lauk monoton, dan informasi gizi tidak jelas',
-        'Gain: hemat waktu 30 menit per hari, hemat uang makan hingga Rp400.000 per bulan, dan makan lebih teratur',
+        'Kantin antri panjang, harga naik, pilihan lauk monoton, dan informasi gizi tidak jelas',
+        'Hemat waktu 30 menit per hari, hemat uang makan hingga Rp400.000 per bulan, dan makan lebih teratur',
       ],
       costStructure: [
         'Bahan baku harian sekitar Rp350.000-425.000 per hari tergantung menu protein',
@@ -233,8 +233,8 @@ export const sampleBMCWorkspaces: SampleBMCWorkspace[] = [
       customerSegments: [
         'Rumah tangga urban dan perumahan menengah yang rutin menghasilkan sampah anorganik setiap minggu',
         'Butuh solusi praktis untuk membuang sampah terpilah tanpa repot ke lokasi bank sampah',
-        'Pain: jadwal setor ribet, hasil penimbangan tidak transparan, dan motivasi warga cepat turun',
-        'Gain: rumah lebih rapi, ada insentif poin atau saldo, dan kontribusi lingkungan lebih nyata',
+        'Jadwal setor ribet, hasil penimbangan tidak transparan, dan motivasi warga cepat turun',
+        'Rumah lebih rapi, ada insentif poin atau saldo, dan kontribusi lingkungan lebih nyata',
       ],
       costStructure: [
         'Biaya armada jemput, bahan bakar mingguan, dan perawatan kendaraan operasional',
@@ -298,8 +298,8 @@ export const sampleBMCWorkspaces: SampleBMCWorkspace[] = [
       customerSegments: [
         'Siswa SMK kelas 11-12 yang ingin naik nilai, lolos ujian, dan siap masuk kerja atau kuliah',
         'Butuh bimbel yang tidak terlalu teoritis, relevan dengan tugas praktik, dan punya mentor yang mudah diakses',
-        'Pain: materi sekolah terlalu cepat, les umum kurang relevan, dan sulit cari mentor industri',
-        'Gain: nilai lebih baik, portofolio siap, performa interview meningkat, dan rasa percaya diri bertambah',
+        'Materi sekolah terlalu cepat, les umum kurang relevan, dan sulit cari mentor industri',
+        'Nilai lebih baik, portofolio siap, performa interview meningkat, dan rasa percaya diri bertambah',
       ],
       costStructure: [
         'Honor tutor inti, mentor tamu, dan evaluator tryout setiap bulan',
